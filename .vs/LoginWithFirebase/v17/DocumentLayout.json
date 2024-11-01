@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-30T21:03:36.277Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

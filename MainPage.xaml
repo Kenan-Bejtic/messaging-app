@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoginWithFirebase.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+
+            <Label
+                x:Name="UsernameLabel"
+                FontSize="24"
+                HorizontalOptions="Center" />
+
+
+            <Label
+                x:Name="GenderLabel"
+                FontSize="18"
+                HorizontalOptions="Center" />
+
+
+            <Image
+                x:Name="ProfileImage"
+                HeightRequest="150"
+                WidthRequest="150"
+                Aspect="AspectFit"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="CounterBtn"
+                Text="Click me" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill" />
+
+            <Button Text="Logout" Clicked="OnLogoutClicked" />
+            
+            <Button Text="Friend" Clicked="FriendInvite"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

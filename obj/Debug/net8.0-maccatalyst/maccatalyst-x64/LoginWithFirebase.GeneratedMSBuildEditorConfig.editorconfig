@@ -1,0 +1,78 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
+build_property.TargetFramework = net8.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = LoginWithFirebase
+build_property.ProjectDir = D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/CompleteProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.CompleteProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\CompleteProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\CompleteProfilePage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/FriendInvitationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.FriendInvitationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\FriendInvitationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\FriendInvitationPage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/SignInPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.SignInPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SignInPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SignInPage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/SignUpPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.SignUpPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SignUpPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SignUpPage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/VerificationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.VerificationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\VerificationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\VerificationPage.xaml

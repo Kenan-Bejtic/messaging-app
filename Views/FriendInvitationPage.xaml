@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoginWithFirebase.Views.FriendInvitationPage"
+             x:Name="InvitationPage"  
+             Title="Search User">
+
+    <VerticalStackLayout Padding="20">
+
+        <SearchBar Placeholder="Enter Invite Code"
+                   x:Name="InviteCodeSearchBar"
+                   Text="{Binding EnteredInviteCode}"
+                   SearchCommand="{Binding SearchCommand}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference InviteCodeSearchBar}}" />
+
+        
+        <Button Text="Search"
+                Command="{Binding SearchCommand}"
+                CommandParameter="{Binding EnteredInviteCode}" />
+
+        
+        <StackLayout IsVisible="{Binding IsProfileVisible}">
+            <Image Source="{Binding ProfilePictureUrl}"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Username:"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding Username}" />
+
+            <Label Text="Invite Code:"
+                   FontAttributes="Bold" />
+            <Label Text="{Binding SearchedInviteCode}" />
+
+            
+            <Button Text="Send Friend Request"
+                    Command="{Binding SendFriendRequestCommand}"
+                    IsVisible="{Binding IsProfileVisible}" />
+        </StackLayout>
+
+        
+        
+        <ListView ItemsSource="{Binding PendingRequests}" Margin="0,20,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10,5">
+                            <Image Source="{Binding ProfilePictureUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill" Margin="0,0,10,0" />
+                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding FromUserId}" FontSize="12" TextColor="Gray" />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                <Button Text="Accept" Command="{Binding Path=BindingContext.AcceptFriendRequestCommand, Source={x:Reference InvitationPage}}" CommandParameter="{Binding FromUserId}" />
+                                <Button Text="Delete" Command="{Binding Path=BindingContext.DeleteFriendRequestCommand, Source={x:Reference InvitationPage}}" CommandParameter="{Binding FromUserId}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
