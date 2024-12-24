@@ -4,22 +4,16 @@
              x:Class="LoginWithFirebase.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-
-
+        <VerticalStackLayout Padding="30,0" Spacing="25">
             <Label
                 x:Name="UsernameLabel"
                 FontSize="24"
                 HorizontalOptions="Center" />
 
-
             <Label
                 x:Name="GenderLabel"
                 FontSize="18"
                 HorizontalOptions="Center" />
-
 
             <Image
                 x:Name="ProfileImage"
@@ -30,14 +24,32 @@
 
             <Button
                 x:Name="CounterBtn"
-                Text="Click me" 
+                Text="Click me"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
 
-            <Button Text="Logout" Clicked="OnLogoutClicked" />
-            
-            <Button Text="Friend" Clicked="FriendInvite"/>
+            <Button
+                Text="Logout"
+                Clicked="OnLogoutClicked" />
+
+            <Button
+                Text="Friend"
+                Clicked="FriendInvite" />
+
+            <CollectionView x:Name="FriendsCollectionView" SelectionMode="Single"
+                            SelectionChanged="OnFriendSelected"
+                            HeightRequest="300">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                           
+                            <Label Text="{Binding .}" FontSize="14"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

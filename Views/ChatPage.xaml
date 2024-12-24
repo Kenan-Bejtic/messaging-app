@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:LoginWithFirebase.Model"
+    x:Class="LoginWithFirebase.Views.ChatPage"
+    Title="Chat Page">
+
+    <StackLayout>
+        <CollectionView x:Name="MessagesCollectionView" VerticalOptions="FillAndExpand">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type model:MessageModel}">
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Content}" FontSize="16"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <StackLayout Orientation="Horizontal" Padding="5">
+            <Entry x:Name="MessageEntry"
+                   Placeholder="Type a message..."
+                   HorizontalOptions="FillAndExpand" />
+            <Button Text="Send"
+                    Clicked="OnSendMessageClicked"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using LoginWithFirebase.ViewModel;
+using LoginWithFirebase.Model;
 using Firebase.Auth.Providers;
+using System.Collections.ObjectModel;
 
 namespace LoginWithFirebase
 {
@@ -16,6 +18,7 @@ namespace LoginWithFirebase
     {
         private  FirebaseAuthClient _firebaseAuthClient;
         private readonly FirebaseClient _firebaseClient;
+        private ObservableCollection<string> _friendList = new ObservableCollection<string>();
         private string _userId;
         public string inviteCode;
 
@@ -27,7 +30,7 @@ namespace LoginWithFirebase
             
             _firebaseClient = new FirebaseClient("https://razvoj-mobilnih-aplikacija-default-rtdb.europe-west1.firebasedatabase.app/");
             _userId = Preferences.Default.Get("UserId", string.Empty);
-
+            FriendsCollectionView.ItemsSource = _friendList;
             if (string.IsNullOrWhiteSpace(_userId))
             {
                 Console.WriteLine("[ERROR] User ID is empty. Cannot load user data.");
@@ -36,6 +39,8 @@ namespace LoginWithFirebase
 
            
             LoadUserData();
+
+          
         }
 
         private int count = 0;
@@ -141,23 +146,12 @@ namespace LoginWithFirebase
 
 
 
-
-
-
-
-
-
-
-
         private async Task LoadUserData()
         {
             try
             {
                 if (!string.IsNullOrWhiteSpace(_userId))
                 {
-                    Console.WriteLine($"[DEBUG] Loading data for user ID: {_userId}");
-
-
                     var user = await _firebaseClient
                         .Child("users")
                         .Child(_userId)
@@ -165,35 +159,18 @@ namespace LoginWithFirebase
 
                     if (user != null)
                     {
-                        Console.WriteLine($"[DEBUG] User data retrieved: Username={user.Username}, Gender={user.Gender}, ProfilePictureUrl={user.ProfilePictureUrl}, InviteCode={user.InviteCode}");
                         inviteCode = user.InviteCode;
 
                         Dispatcher.Dispatch(() =>
                         {
+                            string inviteCodeDisplay = !string.IsNullOrWhiteSpace(user.InviteCode)
+                                ? $" #{user.InviteCode}"
+                                : string.Empty;
 
-                            if (UsernameLabel != null)
-                            {
-                                
-                                string inviteCodeDisplay = !string.IsNullOrWhiteSpace(user.InviteCode) ? $" #{user.InviteCode}" : "";
-                                UsernameLabel.Text = $"{user.Username ?? "Unknown"}{inviteCodeDisplay}";
-                                Console.WriteLine($"[DEBUG] UsernameLabel set to: {user.Username}{inviteCodeDisplay}");
-                            }
-                            else
-                            {
-                                Console.WriteLine("[ERROR] UsernameLabel is null");
-                            }
+                            UsernameLabel.Text = $"{user.Username ?? "Unknown"}{inviteCodeDisplay}";
+                            GenderLabel.Text = user.Gender ?? "Unknown";
 
-                            if (GenderLabel != null)
-                            {
-                                GenderLabel.Text = user.Gender ?? "Unknown";
-                                Console.WriteLine($"[DEBUG] GenderLabel set to: {user.Gender}");
-                            }
-                            else
-                            {
-                                Console.WriteLine("[ERROR] GenderLabel is null");
-                            }
-
-                            if (ProfileImage != null && !string.IsNullOrWhiteSpace(user.ProfilePictureUrl))
+                            if (!string.IsNullOrWhiteSpace(user.ProfilePictureUrl))
                             {
                                 ProfileImage.Source = new UriImageSource
                                 {
@@ -201,43 +178,61 @@ namespace LoginWithFirebase
                                     CachingEnabled = true,
                                     CacheValidity = TimeSpan.FromDays(1)
                                 };
-                                Console.WriteLine($"[DEBUG] ProfileImage set to URL: {user.ProfilePictureUrl}");
-                            }
-                            else if (ProfileImage == null)
-                            {
-                                Console.WriteLine("[ERROR] ProfileImage is null");
-                            }
-                            else
-                            {
-                                Console.WriteLine("[DEBUG] No Profile Picture URL provided.");
                             }
                         });
+
+                        if (user.Friends != null)
+                        {
+                            _friendList.Clear();
+                            foreach (var friendUid in user.Friends)
+                            {
+                                _friendList.Add(friendUid);
+                            }
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("[ERROR] User data is null");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("[ERROR] User ID is null or empty");
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"[ERROR] Error fetching user data: {ex.Message}");
-                await Application.Current.MainPage.DisplayAlert("Error", $"An error occurred while fetching user data: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error",
+                    $"An error occurred while fetching user data: {ex.Message}", "OK");
+            }
+        }
+
+        private async void OnFriendSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+            {
+                var friendInviteCode = e.CurrentSelection[0] as string;
+                if (!string.IsNullOrWhiteSpace(friendInviteCode))
+                {
+                    var friendProfile = (await _firebaseClient
+                        .Child("users")
+                        .OrderBy("inviteCode")
+                        .EqualTo(friendInviteCode)
+                        .OnceAsync<UserModel>())
+                        .FirstOrDefault();
+
+                    if (friendProfile != null)
+                    {
+                        var friendUid = friendProfile.Key;
+
+                        await Navigation.PushAsync(new ChatPage(_userId, friendUid));
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Could not find friend by invite code.", "OK");
+                    }
+                }
+
+                FriendsCollectionView.SelectedItem = null;
             }
         }
 
 
-
-        public class UserModel
-        {
-            public string Username { get; set; }
-            public string Gender { get; set; }
-            public string ProfilePictureUrl { get; set; }
-            public string InviteCode { get; set; }
-        }
     }
+
+
 }
+

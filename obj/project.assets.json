@@ -978,20 +978,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -1092,15 +1092,6 @@
             "assetType": "runtime",
             "rid": "win"
           }
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -3968,20 +3959,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -4072,15 +4063,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -6914,20 +6896,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -7018,15 +7000,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -9860,20 +9833,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -9964,15 +9937,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -12806,20 +12770,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -12910,15 +12874,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -15752,20 +15707,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -15856,15 +15811,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -18698,20 +18644,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -18802,15 +18748,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -21644,20 +21581,20 @@
           "lib/MonoAndroid10/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -21748,15 +21685,6 @@
         },
         "runtime": {
           "runtimes/win/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "compile": {
-          "ref/MonoAndroid10/_._": {}
-        },
-        "runtime": {
-          "lib/MonoAndroid10/_._": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -25015,20 +24943,20 @@
           "lib/netstandard1.3/System.ObjectModel.dll": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -25232,20 +25160,6 @@
             "assetType": "runtime",
             "rid": "win"
           }
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -27282,20 +27196,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -27497,20 +27411,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -29582,20 +29482,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -29797,20 +29697,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -31882,20 +31768,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -32097,20 +31983,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -34182,20 +34054,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -34397,20 +34269,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -36482,20 +36340,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -36697,20 +36555,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -38782,20 +38626,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -38997,20 +38841,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -41076,20 +40906,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -41291,20 +41121,6 @@
         },
         "runtime": {
           "runtimes/win/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -43110,20 +42926,20 @@
           "lib/netstandard1.3/System.ObjectModel.dll": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -43327,20 +43143,6 @@
             "assetType": "runtime",
             "rid": "win"
           }
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -45377,20 +45179,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -45592,20 +45394,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -47677,20 +47465,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -47892,20 +47680,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -49977,20 +49751,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -50192,20 +49966,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -52277,20 +52037,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -52492,20 +52252,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -54577,20 +54323,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -54792,20 +54538,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -56877,20 +56609,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -57092,20 +56824,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -59171,20 +58889,20 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -59386,20 +59104,6 @@
         },
         "runtime": {
           "runtimes/win/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -61374,20 +61078,23 @@
           "lib/netstandard1.3/System.ObjectModel.dll": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -61591,20 +61298,6 @@
             "assetType": "runtime",
             "rid": "win"
           }
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -63770,20 +63463,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -63985,20 +63681,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -66199,20 +65881,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -66414,20 +66099,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -68628,20 +68299,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -68843,20 +68517,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -71057,20 +70717,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -71272,20 +70935,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -73486,20 +73135,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -73701,20 +73353,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -75915,20 +75553,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -76130,20 +75771,6 @@
         },
         "runtime": {
           "runtimes/unix/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -78344,20 +77971,23 @@
           "ref/netstandard/_._": {}
         }
       },
-      "System.Reactive/4.0.0": {
+      "System.Reactive/6.0.1": {
         "type": "package",
-        "dependencies": {
-          "System.Runtime.InteropServices.WindowsRuntime": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reactive.dll": {
+          "lib/net6.0-windows10.0.19041/System.Reactive.dll": {
             "related": ".xml"
           }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ],
+        "build": {
+          "buildTransitive/net6.0-windows10.0.19041/_._": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -78559,20 +78189,6 @@
         },
         "runtime": {
           "runtimes/win/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll": {}
-        }
-      },
-      "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -83914,24 +83530,31 @@
         "system.private.uri.nuspec"
       ]
     },
-    "System.Reactive/4.0.0": {
-      "sha512": "yaVAxT2Yl28p9+DupGwj2oPbIOYZUQimOQ+n7N7vML2oofIRj9BmcfD7DHc6FLrNah65EigOgG6U9VnwWEyz5g==",
+    "System.Reactive/6.0.1": {
+      "sha512": "rHaWtKDwCi9qJ3ObKo8LHPMuuwv33YbmQi7TcUK1C264V3MFnOr5Im7QgCTdLniztP3GJyeiSg5x8NqYJFqRmg==",
       "type": "package",
-      "path": "system.reactive/4.0.0",
+      "path": "system.reactive/6.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net46/System.Reactive.dll",
-        "lib/net46/System.Reactive.xml",
+        "build/net6.0-windows10.0.19041/_._",
+        "build/net6.0/_._",
+        "buildTransitive/net6.0-windows10.0.19041/_._",
+        "buildTransitive/net6.0/_._",
+        "icon.png",
+        "lib/net472/System.Reactive.dll",
+        "lib/net472/System.Reactive.xml",
+        "lib/net6.0-windows10.0.19041/System.Reactive.dll",
+        "lib/net6.0-windows10.0.19041/System.Reactive.xml",
+        "lib/net6.0/System.Reactive.dll",
+        "lib/net6.0/System.Reactive.xml",
         "lib/netstandard2.0/System.Reactive.dll",
         "lib/netstandard2.0/System.Reactive.xml",
-        "lib/uap10.0.16299/System.Reactive.dll",
-        "lib/uap10.0.16299/System.Reactive.pri",
-        "lib/uap10.0.16299/System.Reactive.xml",
-        "lib/uap10.0/System.Reactive.dll",
-        "lib/uap10.0/System.Reactive.pri",
-        "lib/uap10.0/System.Reactive.xml",
-        "system.reactive.4.0.0.nupkg.sha512",
+        "lib/uap10.0.18362/System.Reactive.dll",
+        "lib/uap10.0.18362/System.Reactive.pri",
+        "lib/uap10.0.18362/System.Reactive.xml",
+        "readme.md",
+        "system.reactive.6.0.1.nupkg.sha512",
         "system.reactive.nuspec"
       ]
     },
@@ -84704,67 +84327,6 @@
         "runtimes/win/lib/netstandard1.1/System.Runtime.InteropServices.RuntimeInformation.dll",
         "system.runtime.interopservices.runtimeinformation.4.3.0.nupkg.sha512",
         "system.runtime.interopservices.runtimeinformation.nuspec"
-      ]
-    },
-    "System.Runtime.InteropServices.WindowsRuntime/4.3.0": {
-      "sha512": "J4GUi3xZQLUBasNwZnjrffN8i5wpHrBtZoLG+OhRyGo/+YunMRWWtwoMDlUAIdmX0uRfpHIBDSV6zyr3yf00TA==",
-      "type": "package",
-      "path": "system.runtime.interopservices.windowsruntime/4.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/netcore50/System.Runtime.InteropServices.WindowsRuntime.dll",
-        "lib/netstandard1.3/System.Runtime.InteropServices.WindowsRuntime.dll",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios1/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/System.Runtime.InteropServices.WindowsRuntime.dll",
-        "ref/netcore50/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/de/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/es/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/fr/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/it/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/ja/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/ko/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/ru/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/zh-hans/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netcore50/zh-hant/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.dll",
-        "ref/netstandard1.0/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/de/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/es/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/fr/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/it/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/ja/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/ko/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/ru/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/zh-hans/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/netstandard1.0/zh-hant/System.Runtime.InteropServices.WindowsRuntime.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/aot/lib/netcore50/System.Runtime.InteropServices.WindowsRuntime.dll",
-        "system.runtime.interopservices.windowsruntime.4.3.0.nupkg.sha512",
-        "system.runtime.interopservices.windowsruntime.nuspec"
       ]
     },
     "System.Runtime.Numerics/4.3.0": {
@@ -87885,7 +87447,8 @@
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.82",
       "Microsoft.Maui.Controls.Compatibility >= 8.0.82",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.10"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.10",
+      "System.Reactive >= 6.0.1"
     ],
     "net8.0-ios18.0": [
       "CommunityToolkit.Mvvm >= 8.3.2",
@@ -87896,7 +87459,8 @@
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.82",
       "Microsoft.Maui.Controls.Compatibility >= 8.0.82",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.10"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.10",
+      "System.Reactive >= 6.0.1"
     ],
     "net8.0-maccatalyst18.0": [
       "CommunityToolkit.Mvvm >= 8.3.2",
@@ -87907,7 +87471,8 @@
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.82",
       "Microsoft.Maui.Controls.Compatibility >= 8.0.82",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.10"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.10",
+      "System.Reactive >= 6.0.1"
     ],
     "net8.0-windows10.0.19041": [
       "CommunityToolkit.Mvvm >= 8.3.2",
@@ -87917,7 +87482,8 @@
       "FirebaseStorage.net >= 1.0.3",
       "Microsoft.Extensions.Logging.Debug >= 8.0.0",
       "Microsoft.Maui.Controls >= 8.0.82",
-      "Microsoft.Maui.Controls.Compatibility >= 8.0.82"
+      "Microsoft.Maui.Controls.Compatibility >= 8.0.82",
+      "System.Reactive >= 6.0.1"
     ]
   },
   "packageFolders": {
@@ -88023,6 +87589,10 @@
             "target": "Package",
             "version": "[8.0.10, )",
             "autoReferenced": true
+          },
+          "System.Reactive": {
+            "target": "Package",
+            "version": "[6.0.1, )"
           }
         },
         "imports": [
@@ -88086,6 +87656,10 @@
             "target": "Package",
             "version": "[8.0.10, )",
             "autoReferenced": true
+          },
+          "System.Reactive": {
+            "target": "Package",
+            "version": "[6.0.1, )"
           }
         },
         "imports": [
@@ -88149,6 +87723,10 @@
             "target": "Package",
             "version": "[8.0.10, )",
             "autoReferenced": true
+          },
+          "System.Reactive": {
+            "target": "Package",
+            "version": "[6.0.1, )"
           }
         },
         "imports": [
@@ -88207,6 +87785,10 @@
           "Microsoft.Maui.Controls.Compatibility": {
             "target": "Package",
             "version": "[8.0.82, )"
+          },
+          "System.Reactive": {
+            "target": "Package",
+            "version": "[6.0.1, )"
           }
         },
         "imports": [
