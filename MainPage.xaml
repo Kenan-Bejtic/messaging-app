@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LoginWithFirebase.Model"
              x:Class="LoginWithFirebase.MainPage">
 
     <ScrollView>
@@ -36,19 +37,34 @@
             <Button
                 Text="Friend"
                 Clicked="FriendInvite" />
-
-            <CollectionView x:Name="FriendsCollectionView" SelectionMode="Single"
-                            SelectionChanged="OnFriendSelected"
-                            HeightRequest="300">
+            
+            <CollectionView x:Name="FriendsCollectionView"
+                SelectionMode="Single"
+                SelectionChanged="OnFriendSelected"
+                HeightRequest="300">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10">
-                           
-                            <Label Text="{Binding .}" FontSize="14"/>
+                    <DataTemplate x:DataType="{x:Type local:FriendDisplayModel}">
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Image Source="{Binding ProfilePictureUrl}" 
+                       WidthRequest="40" 
+                       HeightRequest="40" 
+                       Aspect="AspectFill"/>
+                            <Label Text="{Binding Username}"
+       FontSize="14"
+       VerticalOptions="Center"
+       Margin="10,0,0,0">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding HasUnreadMessages}" Value="true">
+                                        <Setter Property="TextColor" Value="Red" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
 
         </VerticalStackLayout>
     </ScrollView>

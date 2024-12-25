@@ -5,6 +5,8 @@ using System.Linq;
 using Firebase.Database.Streaming;
 using LoginWithFirebase.ViewModel;
 using System.Reactive.Linq;
+using Firebase.Storage;
+using LoginWithFirebase.Helpers;
 
 namespace LoginWithFirebase.Views
 {
@@ -19,6 +21,7 @@ namespace LoginWithFirebase.Views
         public ChatPage(string currentUserId, string friendUserId)
         {
             InitializeComponent();  
+            BubbleAlignmentConverter.CurrentUserId = currentUserId; 
 
             _currentUserId = currentUserId;
             _friendUserId = friendUserId;
@@ -95,5 +98,49 @@ namespace LoginWithFirebase.Views
                 }
             }
         }
+
+
+        private async void OnSendImageClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = await MediaPicker.PickPhotoAsync();
+                if (result == null) return;
+
+                using var stream = await result.OpenReadAsync();
+                var storage = new FirebaseStorage("yourbucket.appspot.com");
+                var fileName = $"{_currentUserId}_{Path.GetFileName(result.FullPath)}";
+
+                
+                var uploadTask = await storage
+                    .Child("chat_images")
+                    .Child(fileName)
+                    .PutAsync(stream);
+
+               
+                var downloadUrl = await storage
+                    .Child("chat_images")
+                    .Child(fileName)
+                    .GetDownloadUrlAsync();
+
+               
+                var newMessage = new MessageModel
+                {
+                    FromUserId = _currentUserId,
+                    ToUserId = _friendUserId,
+                    Content = "",  
+                    ImageUrl = downloadUrl,
+                    Timestamp = DateTime.UtcNow
+                };
+
+                await _chatService.SendMessageAsync(_conversationId, newMessage);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+
     }
 }

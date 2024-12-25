@@ -3,26 +3,54 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:LoginWithFirebase.Model"
+    xmlns:helpers="clr-namespace:LoginWithFirebase.Helpers"
     x:Class="LoginWithFirebase.Views.ChatPage"
     Title="Chat Page">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:BubbleAlignmentConverter x:Key="BubbleAlignmentConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout>
         <CollectionView x:Name="MessagesCollectionView" VerticalOptions="FillAndExpand">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type model:MessageModel}">
                     <StackLayout Padding="10">
-                        <Label Text="{Binding Content}" FontSize="16"/>
+                       
+                        <StackLayout 
+    HorizontalOptions="{Binding FromUserId, Converter={StaticResource BubbleAlignmentConverter}}"
+    BackgroundColor="LightGray"
+    Padding="8" Margin="5">
+
+                            
+                            <Image Source="{Binding ImageUrl}"
+       IsVisible="{Binding ImageUrl, Converter={StaticResource NullOrEmptyToBoolInverter}}"
+       HorizontalOptions="FillAndExpand"
+       VerticalOptions="FillAndExpand"
+       Aspect="AspectFit" />
+
+                           
+                            <Label Text="{Binding Content}" 
+           FontSize="16"
+           IsVisible="{Binding ImageUrl, Converter={StaticResource NullOrEmptyToBoolConverter}}" />
+                        </StackLayout>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+        </CollectionView> 
+        
 
         <StackLayout Orientation="Horizontal" Padding="5">
             <Entry x:Name="MessageEntry"
-                   Placeholder="Type a message..."
-                   HorizontalOptions="FillAndExpand" />
+           Placeholder="Type a message..."
+           HorizontalOptions="FillAndExpand" />
+
+            <Button Text="Image"
+            Clicked="OnSendImageClicked"/>
+
             <Button Text="Send"
-                    Clicked="OnSendMessageClicked"/>
+            Clicked="OnSendMessageClicked"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

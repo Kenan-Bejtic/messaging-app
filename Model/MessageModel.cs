@@ -12,5 +12,6 @@ namespace LoginWithFirebase.Model
         public string ToUserId { get; set; }
         public string Content { get; set; }
         public DateTime Timestamp { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
     }
 }

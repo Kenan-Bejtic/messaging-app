@@ -16,10 +16,13 @@ namespace LoginWithFirebase
 {
     public partial class MainPage : ContentPage
     {
-        private  FirebaseAuthClient _firebaseAuthClient;
+        private FirebaseAuthClient _firebaseAuthClient;
         private readonly FirebaseClient _firebaseClient;
-        private ObservableCollection<string> _friendList = new ObservableCollection<string>();
+
+        private ObservableCollection<FriendDisplayModel> _friendList = new ObservableCollection<FriendDisplayModel>();
+
         private string _userId;
+        private string _currentOpenChatUid = null;
         public string inviteCode;
 
         public MainPage(FirebaseAuthClient firebaseAuthClient)
@@ -27,32 +30,83 @@ namespace LoginWithFirebase
             InitializeComponent();
             _firebaseAuthClient = firebaseAuthClient;
 
-            
             _firebaseClient = new FirebaseClient("https://razvoj-mobilnih-aplikacija-default-rtdb.europe-west1.firebasedatabase.app/");
             _userId = Preferences.Default.Get("UserId", string.Empty);
+
+            
             FriendsCollectionView.ItemsSource = _friendList;
+
             if (string.IsNullOrWhiteSpace(_userId))
             {
                 Console.WriteLine("[ERROR] User ID is empty. Cannot load user data.");
                 return;
             }
 
-           
-            LoadUserData();
+            
+            _ = LoadUserData();
 
-          
+            
+            SubscribeToFriendChanges();
+
+            SubscribeToAllMessages();
+        }
+
+        private void SubscribeToFriendChanges()
+        {
+            
+            var observable = _firebaseClient
+                .Child("users")
+                .Child(_userId)
+                .Child("friends")
+                .AsObservable<string>();  
+
+            observable
+                .Subscribe(async fbEvent =>
+                {
+                    if (fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
+                    {
+                        var friendInviteCode = fbEvent.Object; 
+                        if (!string.IsNullOrEmpty(friendInviteCode))
+                        {
+                          
+                            var matchingUser = (await _firebaseClient
+                                .Child("users")
+                                .OrderBy("inviteCode")
+                                .EqualTo(friendInviteCode)
+                                .OnceAsync<UserModel>())
+                                .FirstOrDefault();
+
+                            if (matchingUser != null)
+                            {
+                                var realUid = matchingUser.Key;
+                                var friendData = matchingUser.Object;
+
+                              
+                                if (!_friendList.Any(f => f.FirebaseUid == realUid))
+                                {
+                                    var friendDisplay = new FriendDisplayModel
+                                    {
+                                        FirebaseUid = realUid,
+                                        Username = friendData.Username,
+                                        ProfilePictureUrl = friendData.ProfilePictureUrl
+                                    };
+                                    _friendList.Add(friendDisplay);
+                                }
+                            }
+                        }
+
+                    }
+                });
         }
 
         private int count = 0;
-
         private void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            CounterBtn.Text = count == 1
+                ? $"Clicked {count} time"
+                : $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
@@ -67,7 +121,6 @@ namespace LoginWithFirebase
                     return;
                 }
 
-                
                 try
                 {
                     var currentUser = _firebaseAuthClient.User;
@@ -85,29 +138,28 @@ namespace LoginWithFirebase
                     Console.WriteLine("Error during Firebase sign-out: " + ex.ToString());
                 }
 
-                
                 Preferences.Default?.Remove("UserEmail");
                 Preferences.Default?.Remove("UserId");
 
-                
+               
                 var config = new FirebaseAuthConfig
                 {
                     ApiKey = "AIzaSyB5dQbIgcUlyWq1w2D_pkIkq4JPPG9mpLo",
                     AuthDomain = "razvoj-mobilnih-aplikacija.firebaseapp.com",
                     Providers = new FirebaseAuthProvider[]
                     {
-                new EmailProvider()
+                        new EmailProvider()
                     }
                 };
                 _firebaseAuthClient = new FirebaseAuthClient(config);
 
-                
                 if (Application.Current == null)
                 {
                     Console.WriteLine("Error: Application.Current is null. Cannot navigate.");
                     return;
                 }
 
+                
                 var signInViewModel = new SignInViewModel(_firebaseAuthClient);
                 if (signInViewModel == null)
                 {
@@ -122,10 +174,9 @@ namespace LoginWithFirebase
                     return;
                 }
 
-                
                 Dispatcher.Dispatch(async () =>
                 {
-                    await Task.Delay(50); 
+                    await Task.Delay(50);
                     Application.Current.MainPage = new NavigationPage(signInPage);
                 });
             }
@@ -135,16 +186,11 @@ namespace LoginWithFirebase
             }
         }
 
-
         private async void FriendInvite(object sender, EventArgs e)
         {
             var friendInvitation = new FriendInvitationPage(inviteCode);
-
-            
             await Navigation.PushAsync(friendInvitation);
         }
-
-
 
         private async Task LoadUserData()
         {
@@ -161,6 +207,7 @@ namespace LoginWithFirebase
                     {
                         inviteCode = user.InviteCode;
 
+                      
                         Dispatcher.Dispatch(() =>
                         {
                             string inviteCodeDisplay = !string.IsNullOrWhiteSpace(user.InviteCode)
@@ -181,14 +228,47 @@ namespace LoginWithFirebase
                             }
                         });
 
-                        if (user.Friends != null)
+                       
+                        if (user.Friends != null && user.Friends.Any())
                         {
                             _friendList.Clear();
-                            foreach (var friendUid in user.Friends)
+
+                            foreach (var friendInviteCode in user.Friends) 
                             {
-                                _friendList.Add(friendUid);
+                                var matchingUser = (await _firebaseClient
+                                    .Child("users")
+                                    .OrderBy("inviteCode")
+                                    .EqualTo(friendInviteCode) 
+                                    .OnceAsync<UserModel>())
+                                    .FirstOrDefault();
+
+                                if (matchingUser == null)
+                                {
+                                    Console.WriteLine($"No user found with inviteCode = {friendInviteCode}");
+                                    continue;
+                                }
+
+                                var realUid = matchingUser.Key;
+                                var friendData = matchingUser.Object;
+                               
+
+                                if (friendData != null)
+                                {
+                                    var friendDisplay = new FriendDisplayModel
+                                    {
+                                        FirebaseUid = realUid,              
+                                        Username = friendData.Username,
+                                        ProfilePictureUrl = friendData.ProfilePictureUrl
+                                    };
+                                    _friendList.Add(friendDisplay);
+                                }
                             }
+
                         }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"[ERROR] No user data found at 'users/{_userId}'.");
                     }
                 }
             }
@@ -204,35 +284,57 @@ namespace LoginWithFirebase
         {
             if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
             {
-                var friendInviteCode = e.CurrentSelection[0] as string;
-                if (!string.IsNullOrWhiteSpace(friendInviteCode))
+                var selectedFriend = e.CurrentSelection[0] as FriendDisplayModel;
+                if (selectedFriend != null)
                 {
-                    var friendProfile = (await _firebaseClient
-                        .Child("users")
-                        .OrderBy("inviteCode")
-                        .EqualTo(friendInviteCode)
-                        .OnceAsync<UserModel>())
-                        .FirstOrDefault();
+                    selectedFriend.HasUnreadMessages = false;
 
-                    if (friendProfile != null)
-                    {
-                        var friendUid = friendProfile.Key;
+                    
+                    _currentOpenChatUid = selectedFriend.FirebaseUid;
 
-                        await Navigation.PushAsync(new ChatPage(_userId, friendUid));
-                    }
-                    else
-                    {
-                        await DisplayAlert("Error", "Could not find friend by invite code.", "OK");
-                    }
+                    await Navigation.PushAsync(new ChatPage(_userId, selectedFriend.FirebaseUid));
                 }
-
                 FriendsCollectionView.SelectedItem = null;
             }
         }
 
+        private void SubscribeToAllMessages()
+        {
+           
+
+            var observable = _firebaseClient
+                .Child("chats")
+                .AsObservable<MessageModel>()
+                .Subscribe(fbEvent =>
+                {
+                    if (fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
+                    {
+                        var newMsg = fbEvent.Object;
+                        if (newMsg == null) return;
+
+                       
+                        if (newMsg.ToUserId == _userId)
+                        {
+                            MainThread.BeginInvokeOnMainThread(() =>
+                            {
+                                if (newMsg.ToUserId == _userId)
+{
+    if (_currentOpenChatUid != newMsg.FromUserId)
+    {
+        var friend = _friendList.FirstOrDefault(f => f.FirebaseUid == newMsg.FromUserId);
+        if (friend != null)
+        {
+            friend.HasUnreadMessages = true;
+        }
+    }
+}
+                            });
+                        }
+                    }
+                });
+        }
 
     }
 
 
 }
-

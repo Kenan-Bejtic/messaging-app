@@ -7,57 +7,181 @@
              x:DataType="vm:SignInViewModel"
              Shell.FlyoutBehavior="Disabled"
              Shell.NavBarIsVisible="False"
-             Title="SignInPage">
+             BackgroundColor="#E0F7FA" 
+    NavigationPage.HasNavigationBar="False"
+    
+    Padding="0">
+    
 
-    <VerticalStackLayout
-    Spacing="25"
-    Padding="30,0"
-    VerticalOptions="Center">
-        <Image Source="dotnet_bot.png" HeightRequest="150" WidthRequest="150"/>
-        <VerticalStackLayout Spacing="5">
-            <Label Text="Register new account" FontSize="18" TextColor="Gray" HorizontalTextAlignment="Center"/>
+    <Grid RowDefinitions="*,Auto" Padding="30,20" BackgroundColor="#E0F7FA">
+        
+
+        
+        <VerticalStackLayout
+            Spacing="20"
+            VerticalOptions="StartAndExpand">
+            
+
+            
+            <Image Source="logo.png"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   HorizontalOptions="Center"/>
+
+           
+            <Label Text="Register New Account"
+                   FontSize="22"
+                   TextColor="#333333"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"/>
+
+            
+            <Grid Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    
+                    <ColumnDefinition Width="*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Frame BackgroundColor="White"
+                       BorderColor="#E0E0E0"
+                       CornerRadius="25" 
+                    HeightRequest="50"
+                       WidthRequest="50"
+                  
+                    VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Padding="0">
+                    
+                    <Image Source="email.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           HorizontalOptions="Center" 
+                        VerticalOptions="Center"/>
+                        
+                </Frame>
+
+                <Entry Grid.Column="1"
+                       Text="{Binding SignInModel.Email}"
+                       Placeholder="User Email"
+                       Keyboard="Email"
+                       BackgroundColor="Transparent" 
+                    PlaceholderColor="#A0A0A0"
+                       TextColor="#333333"
+                       FontSize="16"
+                       Margin="10,0,0,0"
+                       VerticalOptions="Center"
+                       AutomationProperties.HelpText="User Email"/>
+            </Grid>
+
+            
+            <Grid Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                  
+                    <ColumnDefinition Width="*"/>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Frame BackgroundColor="White"
+                       BorderColor="#E0E0E0"
+                       CornerRadius="25" 
+                    HeightRequest="50"
+                       WidthRequest="50"
+                    VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       Padding="0">
+                    <Image Source="password.png"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           HorizontalOptions="Center" 
+                        VerticalOptions="Center"/>
+                        
+                </Frame>
+
+                <Entry Grid.Column="1"
+                       Text="{Binding SignInModel.Password}"
+                       Placeholder="Password"
+                       IsPassword="True"
+                       BackgroundColor="Transparent"
+                    PlaceholderColor="#A0A0A0"
+                       TextColor="#333333"
+                       FontSize="16"
+                       Margin="10,0,0,0"
+                       VerticalOptions="Center"
+                       AutomationProperties.HelpText="Password"/>
+            </Grid>
+
+            
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="End"
+                         Padding="0,5,0,0">
+                <Label Text="Forgot Password?"
+                       TextColor="#007AFF"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+            
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Padding="0,10,0,0">
+                <CheckBox IsChecked="{Binding RememberMe}" Color="#007AFF"/>
+                <Label Text="Remember Me"
+                       VerticalOptions="Center"
+                       TextColor="#333333"/>
+            </StackLayout>
+
+            
+            <Button Text="Sign In"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Command="{Binding SignInCommand}"
+                    AutomationProperties.HelpText="Sign In">
+                <Button.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="BackgroundColor" Value="#005BBB"/>
+                       
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
         </VerticalStackLayout>
 
-        <StackLayout Orientation="Horizontal">
-            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
-                <Image Source="email.png" HeightRequest="20" WidthRequest="20"/>
-            </Frame>
-            <Frame HeightRequest="45" Margin="20,0,0,0" Padding="0" HasShadow="True" BorderColor="White" HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding SignInModel.Email}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="User Email" Keyboard="Email"/>
-
-            </Frame>
-
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal">
-            <Frame ZIndex="1" HasShadow="True" BorderColor="White" HeightRequest="56" WidthRequest="56" CornerRadius="28">
-                <Image Source="password.png" HeightRequest="20" WidthRequest="20"/>
-            </Frame>
-            <Frame HeightRequest="45" Margin="20,0,0,0" Padding="0" HasShadow="True" BorderColor="White" HorizontalOptions="FillAndExpand">
-                <Entry Text="{Binding SignInModel.Password}" Margin="20,0,0,0" VerticalOptions="Center" Placeholder="Password" IsPassword="True"/>
-            </Frame>
-        </StackLayout>
         
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,5,0,0">
-            <Label Text="Forgot Password?" 
-           TextColor="Blue"
-           VerticalOptions="Center"
-           FontAttributes="Bold">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-        </StackLayout>
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Spacing="10" 
+            HorizontalOptions="Center"
+            Padding="0,15,0,0">
+            <Label Text="Don't have an account? " 
+                TextColor="#666666"
+                   VerticalOptions="Center"/>
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,10,0,0">
-            <CheckBox IsChecked="{Binding RememberMe}" />
-            <Label Text="Remember Me" VerticalOptions="Center"/>
-        </StackLayout>
-        <Button Text="Sign In" WidthRequest="100" CornerRadius="20" HorizontalOptions="Center" Clicked="OnSignInClicked"/>
-        <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
-            <Label Text="Don't have an account?" TextColor="Gray"/>
+                <Button Text="Sign up"
+                    BackgroundColor="Transparent"
+                    TextColor="#007AFF"
+                    FontAttributes="Bold"
+                    Command="{Binding NavigateSignUpCommand}"
+                    VerticalOptions="Center"
+                    FontSize="16"
+                    Padding="0,0">
+                    <Button.Triggers>
+                        <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                            <Setter Property="TextColor" Value="#005BBB"/>
+                            
+                        </Trigger>
+                    </Button.Triggers>
+                </Button>
+        </HorizontalStackLayout>
 
-            <Button Text="Sign up" WidthRequest="100" CornerRadius="20" Command="{Binding NavigateSignUpCommand}"/>
-        </StackLayout>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
