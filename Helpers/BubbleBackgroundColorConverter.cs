@@ -4,7 +4,7 @@ using Microsoft.Maui.Controls;
 
 namespace LoginWithFirebase.Helpers
 {
-    public class BubbleAlignmentConverter : IValueConverter
+    public class BubbleBackgroundColorConverter : IValueConverter
     {
         public static string CurrentUserId { get; set; } = string.Empty;
 
@@ -14,11 +14,11 @@ namespace LoginWithFirebase.Helpers
 
             if (fromUserId == CurrentUserId)
             {
-                return LayoutOptions.EndAndExpand;
+                return (Color)Application.Current.Resources["SentMessageColor"];
             }
             else
             {
-                return LayoutOptions.StartAndExpand;
+                return (Color)Application.Current.Resources["ReceivedMessageColor"]; 
             }
         }
 

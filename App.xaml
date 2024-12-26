@@ -1,14 +1,47 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:LoginWithFirebase"
+             xmlns:helpers="clr-namespace:LoginWithFirebase.Helpers"
              x:Class="LoginWithFirebase.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!-- Merged Dictionaries for External Resources -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Converters -->
+            <helpers:BubbleAlignmentConverter x:Key="BubbleAlignmentConverter" />
+            <helpers:BubbleBackgroundColorConverter x:Key="BubbleBackgroundColorConverter" />
+            <helpers:NullOrEmptyToBoolConverter x:Key="NullOrEmptyToBoolConverter" />
+            <helpers:NullOrEmptyToBoolInverter x:Key="NullOrEmptyToBoolInverter" />
+
+            <!-- Color Resources -->
+            <Color x:Key="SentMessageColor">#DCF8C6</Color>
+            <!-- Light Green -->
+            <Color x:Key="ReceivedMessageColor">#FFFFFF</Color>
+            <!-- White -->
+            <Color x:Key="HeaderBackgroundColor">#007AFF</Color>
+            <!-- Blue -->
+            <Color x:Key="EntryBackgroundColor">#FFFFFF</Color>
+            <!-- White -->
+            <Color x:Key="ButtonBackgroundColor">#007AFF</Color>
+            <!-- Blue -->
+            <Color x:Key="ButtonPressedColor">#005BBB</Color>
+            <!-- Darker Blue -->
+
+            <!-- Styles -->
+            <Style x:Key="CircularImageStyle" TargetType="Image">
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="Clip">
+                    <Setter.Value>
+                        <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

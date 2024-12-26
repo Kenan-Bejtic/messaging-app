@@ -7,6 +7,7 @@ using LoginWithFirebase.ViewModel;
 using System.Reactive.Linq;
 using Firebase.Storage;
 using LoginWithFirebase.Helpers;
+using System.Threading;
 
 namespace LoginWithFirebase.Views
 {
@@ -18,13 +19,22 @@ namespace LoginWithFirebase.Views
         private ObservableCollection<MessageModel> _messages;
         private string _conversationId;
 
-        public ChatPage(string currentUserId, string friendUserId)
+        // Properties for binding header
+        public string FriendProfilePictureUrl { get; set; }
+        public string FriendUsername { get; set; }
+
+        public ChatPage(string currentUserId, string friendUserId, string friendProfilePictureUrl, string friendUsername)
         {
-            InitializeComponent();  
-            BubbleAlignmentConverter.CurrentUserId = currentUserId; 
+            InitializeComponent();
+            BubbleAlignmentConverter.CurrentUserId = currentUserId;
+            BubbleBackgroundColorConverter.CurrentUserId = currentUserId;
 
             _currentUserId = currentUserId;
             _friendUserId = friendUserId;
+            FriendProfilePictureUrl = friendProfilePictureUrl;
+            FriendUsername = friendUsername;
+
+            BindingContext = this;
 
             _chatService = new ChatService("https://razvoj-mobilnih-aplikacija-default-rtdb.europe-west1.firebasedatabase.app/");
             _messages = new ObservableCollection<MessageModel>();
@@ -45,9 +55,8 @@ namespace LoginWithFirebase.Views
                     _messages.Add(msg);
                 }
 
-                
                 var observable = _chatService.SubscribeToMessages(_conversationId);
-                
+
                 observable
                     .ObserveOn(SynchronizationContext.Current)
                     .Subscribe(fbEvent =>
@@ -55,7 +64,7 @@ namespace LoginWithFirebase.Views
                         if (fbEvent.EventType == FirebaseEventType.InsertOrUpdate)
                         {
                             var newMsg = fbEvent.Object;
-                            if (newMsg == null) return;  
+                            if (newMsg == null) return;
 
                             if (!_messages.Any(m =>
                                 m.Timestamp == newMsg.Timestamp &&
@@ -65,6 +74,14 @@ namespace LoginWithFirebase.Views
                                 _messages.Add(newMsg);
                             }
 
+                            // Scroll to the latest message
+                            MainThread.BeginInvokeOnMainThread(() =>
+                            {
+                                if (_messages.Count > 0)
+                                {
+                                    MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1], position: ScrollToPosition.End, animate: true);
+                                }
+                            });
                         }
                     });
             }
@@ -81,8 +98,8 @@ namespace LoginWithFirebase.Views
             {
                 var newMessage = new MessageModel
                 {
-                    FromUserId = _currentUserId,  
-                    ToUserId = _friendUserId,         
+                    FromUserId = _currentUserId,
+                    ToUserId = _friendUserId,
                     Content = text,
                     Timestamp = DateTime.UtcNow
                 };
@@ -99,7 +116,6 @@ namespace LoginWithFirebase.Views
             }
         }
 
-
         private async void OnSendImageClicked(object sender, EventArgs e)
         {
             try
@@ -108,27 +124,27 @@ namespace LoginWithFirebase.Views
                 if (result == null) return;
 
                 using var stream = await result.OpenReadAsync();
-                var storage = new FirebaseStorage("yourbucket.appspot.com");
+                var storage = new FirebaseStorage("razvoj-mobilnih-aplikacija.appspot.com");
                 var fileName = $"{_currentUserId}_{Path.GetFileName(result.FullPath)}";
 
-                
+                // Upload the image
                 var uploadTask = await storage
                     .Child("chat_images")
                     .Child(fileName)
                     .PutAsync(stream);
 
-               
+                // Get the download URL
                 var downloadUrl = await storage
                     .Child("chat_images")
                     .Child(fileName)
                     .GetDownloadUrlAsync();
 
-               
+                // Create the message with the image URL
                 var newMessage = new MessageModel
                 {
                     FromUserId = _currentUserId,
                     ToUserId = _friendUserId,
-                    Content = "",  
+                    Content = "",
                     ImageUrl = downloadUrl,
                     Timestamp = DateTime.UtcNow
                 };
@@ -140,7 +156,5 @@ namespace LoginWithFirebase.Views
                 await DisplayAlert("Error", ex.Message, "OK");
             }
         }
-
-
     }
 }

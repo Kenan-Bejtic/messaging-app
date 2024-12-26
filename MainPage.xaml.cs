@@ -289,14 +289,16 @@ namespace LoginWithFirebase
                 {
                     selectedFriend.HasUnreadMessages = false;
 
-                    
                     _currentOpenChatUid = selectedFriend.FirebaseUid;
 
-                    await Navigation.PushAsync(new ChatPage(_userId, selectedFriend.FirebaseUid));
+                    // Pass friend's profile picture URL and username
+                    await Navigation.PushAsync(new ChatPage(_userId, selectedFriend.FirebaseUid, selectedFriend.ProfilePictureUrl, selectedFriend.Username));
                 }
                 FriendsCollectionView.SelectedItem = null;
             }
         }
+
+
 
         private void SubscribeToAllMessages()
         {
