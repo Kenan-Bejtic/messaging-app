@@ -19,9 +19,11 @@ namespace LoginWithFirebase
     public partial class MainPage : ContentPage
     {
         private FirebaseAuthClient _firebaseAuthClient;
+
+        public Command<FriendDisplayModel> ItemTappedCommand { get; }
+
         private readonly FirebaseClient _firebaseClient;
 
-        
         private HashSet<string> _uniqueChatIds = new HashSet<string>();
 
         private ObservableCollection<FriendDisplayModel> _chatList = new ObservableCollection<FriendDisplayModel>();
@@ -31,10 +33,31 @@ namespace LoginWithFirebase
         private string _userId;
         private string _currentOpenChatUid = null;
 
+
+        private bool _hasPendingFriendRequests;
+        public bool HasPendingFriendRequests
+        {
+            get => _hasPendingFriendRequests;
+            set
+            {
+                if (_hasPendingFriendRequests != value)
+                {
+                    _hasPendingFriendRequests = value;
+                    OnPropertyChanged(nameof(HasPendingFriendRequests));
+                }
+            }
+        }
+
+        
+        private IDisposable _friendRequestsSubscription;
+
         public MainPage(FirebaseAuthClient firebaseAuthClient)
         {
             InitializeComponent();
+            BindingContext = this;
             _firebaseAuthClient = firebaseAuthClient;
+
+            ItemTappedCommand = new Command<FriendDisplayModel>(async (selectedChat) => await OnChatTapped(selectedChat));
 
             _firebaseClient = new FirebaseClient("https://razvoj-mobilnih-aplikacija-default-rtdb.europe-west1.firebasedatabase.app/");
             _userId = Preferences.Default.Get("UserId", string.Empty);
@@ -52,6 +75,45 @@ namespace LoginWithFirebase
             SubscribeToChatChanges();
 
             SubscribeToAllMessages();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadUserData();
+        }
+
+        private async Task LoadUserData()
+        {
+            try
+            {
+                var user = await _firebaseClient
+                    .Child("users")
+                    .Child(_userId)
+                    .OnceSingleAsync<UserModel>();
+
+                if (user != null)
+                {
+                    
+                    await LoadChatData();
+
+                    
+                    await CheckPendingFriendRequests(user.InviteCode);
+
+                    SubscribeToFriendRequestChanges(user.InviteCode);
+                }
+                else
+                {
+                    Console.WriteLine($"[ERROR] No user data found at 'users/{_userId}'.");
+                    await DisplayAlert("Error", "User data not found.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error fetching user data: {ex.Message}");
+                await DisplayAlert("Error",
+                    $"An error occurred while fetching user data: {ex.Message}", "OK");
+            }
         }
 
         private async Task LoadChatData()
@@ -148,7 +210,6 @@ namespace LoginWithFirebase
                                 var realUid = matchingUser.Key;
                                 var friendData = matchingUser.Object;
 
-                                
                                 if (!_uniqueChatIds.Contains(realUid))
                                 {
                                     var chatDisplay = new FriendDisplayModel
@@ -171,6 +232,32 @@ namespace LoginWithFirebase
                 });
         }
 
+
+        private async Task OnChatTapped(FriendDisplayModel selectedChat)
+        {
+            try
+            {
+                if (selectedChat != null)
+                {
+                    Console.WriteLine($"[DEBUG] Selected Chat: {selectedChat.Username}");
+                    selectedChat.HasUnreadMessages = false;
+
+                    _currentOpenChatUid = selectedChat.FirebaseUid;
+
+                    await Navigation.PushAsync(new ChatPage(_userId, selectedChat.FirebaseUid, selectedChat.ProfilePictureUrl, selectedChat.Username));
+                }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"[ERROR] ArgumentOutOfRangeException in OnChatTapped: {ex.Message}");
+                await DisplayAlert("Error", "An unexpected error occurred while selecting a chat.", "OK");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Exception in OnChatTapped: {ex.Message}");
+                await DisplayAlert("Error", "An unexpected error occurred.", "OK");
+            }
+        }
         private async void OnChatSelected(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -180,11 +267,11 @@ namespace LoginWithFirebase
                     var selectedChat = e.CurrentSelection.FirstOrDefault() as FriendDisplayModel;
                     if (selectedChat != null)
                     {
+                        Console.WriteLine($"[DEBUG] Selected Chat: {selectedChat.Username}");
                         selectedChat.HasUnreadMessages = false;
 
                         _currentOpenChatUid = selectedChat.FirebaseUid;
 
-                        
                         await Navigation.PushAsync(new ChatPage(_userId, selectedChat.FirebaseUid, selectedChat.ProfilePictureUrl, selectedChat.Username));
                     }
                     ChatsCollectionView.SelectedItem = null;
@@ -232,10 +319,65 @@ namespace LoginWithFirebase
                 });
         }
 
-        
         private async void OnProfileButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ProfilePage(_firebaseAuthClient));
+        }
+
+        private async Task CheckPendingFriendRequests(string inviteCode)
+        {
+            if (string.IsNullOrWhiteSpace(inviteCode))
+            {
+                HasPendingFriendRequests = false;
+                return;
+            }
+
+            try
+            {
+                var pendingRequests = await _firebaseClient
+                    .Child("friend_requests")
+                    .OrderBy("toInviteCode")
+                    .EqualTo(inviteCode)
+                    .OnceAsync<FriendRequest>();
+
+                HasPendingFriendRequests = pendingRequests.Any(r =>
+                    string.Equals(r.Object.Status, "pending", StringComparison.OrdinalIgnoreCase));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error checking pending friend requests: {ex.Message}");
+                HasPendingFriendRequests = false;
+            }
+        }
+
+        private void SubscribeToFriendRequestChanges(string inviteCode)
+        {
+            if (string.IsNullOrWhiteSpace(inviteCode))
+            {
+                HasPendingFriendRequests = false;
+                return;
+            }
+
+            _friendRequestsSubscription = _firebaseClient
+                .Child("friend_requests")
+                .OrderBy("toInviteCode")
+                .EqualTo(inviteCode)
+                .AsObservable<FriendRequest>()
+                .Subscribe(async fbEvent =>
+                {
+                    if (fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate ||
+                        fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.Delete)
+                    {
+                        await CheckPendingFriendRequests(inviteCode);
+                    }
+                });
+        }
+
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            _friendRequestsSubscription?.Dispose();
         }
     }
 }

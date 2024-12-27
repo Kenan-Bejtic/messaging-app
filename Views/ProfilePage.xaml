@@ -11,15 +11,13 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,20" Spacing="25" BackgroundColor="#E0F7FA">
 
-           
             <Image Source="logo.png"
                    HeightRequest="150"
                    WidthRequest="150"
                    HorizontalOptions="Center" />
 
-           
             <StackLayout Spacing="10" HorizontalOptions="Center">
-                
+
                 <Image
                     x:Name="ProfileImage"
                     HeightRequest="150"
@@ -27,14 +25,14 @@
                     Aspect="AspectFit"
                     HorizontalOptions="Center" />
 
-               
+                
                 <Label
                     x:Name="InviteCodeLabel"
                     FontSize="18"
                     TextColor="#333333"
                     HorizontalOptions="Center" />
 
-                
+              
                 <Label
                     x:Name="UsernameLabel"
                     FontSize="24"
@@ -43,23 +41,44 @@
                     FontAttributes="Bold" />
             </StackLayout>
 
+           
+            <Grid HorizontalOptions="FillAndExpand">
+                
+                <Button
+        Text="Invite Friends"
+        Clicked="OnInviteFriendsClicked"
+        BackgroundColor="#007AFF"
+        TextColor="White"
+        FontAttributes="Bold"
+        CornerRadius="25"
+        HeightRequest="60"
+        HorizontalOptions="FillAndExpand">
+                    <Button.Triggers>
+                        <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                            <Setter Property="BackgroundColor" Value="#005BBB"/>
+                        </Trigger>
+                    </Button.Triggers>
+                </Button>
 
-            <Button
-                Text="Invite Friends"
-                Clicked="OnInviteFriendsClicked"
-                BackgroundColor="#007AFF"
-                TextColor="White"
-                FontAttributes="Bold"
-                CornerRadius="25"
-                HeightRequest="60"
-                HorizontalOptions="FillAndExpand">
-                <Button.Triggers>
-                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
-                        <Setter Property="BackgroundColor" Value="#005BBB"/>
-                    </Trigger>
-                </Button.Triggers>
-            </Button>
-
+               
+                <Frame
+        IsVisible="{Binding HasPendingFriendRequests}"
+        BackgroundColor="Red"
+        BorderColor="Red"
+        CornerRadius="10"
+        WidthRequest="20"
+        HeightRequest="20"
+        HorizontalOptions="End"
+        VerticalOptions="Start"
+        Margin="-10,10,0,0">
+                    <Label Text="!"
+               TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               FontSize="12"/>
+                </Frame>
+            </Grid>
+           
             <Button
                 Text="Logout"
                 Clicked="OnLogoutClicked"

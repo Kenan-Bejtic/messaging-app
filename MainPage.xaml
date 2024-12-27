@@ -4,72 +4,96 @@
              xmlns:local="clr-namespace:LoginWithFirebase.Model"
              x:Class="LoginWithFirebase.MainPage"
              Title="Home"
-             BackgroundColor="White">
+             BackgroundColor="#E0F7FA"
+             NavigationPage.HasNavigationBar="False">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
-            <!-- Navbar -->
             <RowDefinition Height="*"/>
-            <!-- Content -->
+            
         </Grid.RowDefinitions>
 
-        <!-- Custom Navbar -->
-        <Grid Grid.Row="0" BackgroundColor="Blue">
+
+        <Grid Grid.Row="0" BackgroundColor="#007AFF">
             <Image Source="logo.png"
-                   HeightRequest="40"
-                   WidthRequest="40"
+                   HeightRequest="70"
+                   WidthRequest="700"
                    HorizontalOptions="Center"
                    VerticalOptions="Center" />
         </Grid>
 
-        <!-- Main Content -->
         <Grid Grid.Row="1">
             <ScrollView>
                 <VerticalStackLayout Padding="20,10" Spacing="20">
 
-                    <!-- Chats CollectionView -->
                     <CollectionView x:Name="ChatsCollectionView"
-                                    SelectionMode="Single"
-                                    SelectionChanged="OnChatSelected"
-                                    ItemsSource="{Binding FriendList}">
+                SelectionMode="None"
+                ItemsSource="{Binding FriendList}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="local:FriendDisplayModel">
-                                <StackLayout Orientation="Horizontal" Padding="10">
-                                    <Image Source="{Binding ProfilePictureUrl}" 
-                                           WidthRequest="40" 
-                                           HeightRequest="40" 
-                                           Aspect="AspectFill"/>
-                                    <Label Text="{Binding Username}"
-                                           FontSize="14"
-                                           VerticalOptions="Center"
-                                           Margin="10,0,0,0">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label" Binding="{Binding HasUnreadMessages}" Value="true">
-                                                <Setter Property="TextColor" Value="Red" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
-                                </StackLayout>
+                                <Frame HasShadow="True"
+                   BorderColor="#E0E0E0"
+                   CornerRadius="10"
+                   Padding="10"
+                   Margin="5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                          CommandParameter="{Binding}" />
+                                    </Frame.GestureRecognizers>
+                                    <HorizontalStackLayout Spacing="15">
+                                        <Frame WidthRequest="50"
+                           HeightRequest="50"
+                           CornerRadius="25"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           BorderColor="Transparent">
+                                            <Image Source="{Binding ProfilePictureUrl}" 
+                               Aspect="AspectFill" />
+                                        </Frame>
+
+                                        <VerticalStackLayout VerticalOptions="Center">
+                                            <Label Text="{Binding Username}"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#007AFF" />
+                                        </VerticalStackLayout>
+                                    </HorizontalStackLayout>
+                                </Frame>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
+
                 </VerticalStackLayout>
             </ScrollView>
 
-            <!-- Floating User Profile Button -->
-            <AbsoluteLayout>
-                <ImageButton Source="user_logo.png"
-                             WidthRequest="60"
-                             HeightRequest="60"
-                             CornerRadius="30"
-                             BackgroundColor="Transparent"
-                             Clicked="OnProfileButtonClicked"
-                             AbsoluteLayout.LayoutFlags="PositionProportional"
-                             AbsoluteLayout.LayoutBounds="1, 1, 60, 60"
-                             Margin="0,0,20,20"/>
-            </AbsoluteLayout>
+            <Grid HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,20">
+                <Grid>
+                    <ImageButton Source="user_logo.png"
+                                 WidthRequest="60"
+                                 HeightRequest="60"
+                                 CornerRadius="30"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnProfileButtonClicked" />
+
+                    <Frame IsVisible="{Binding HasPendingFriendRequests}"
+                           BackgroundColor="Red"
+                           BorderColor="Red"
+                           CornerRadius="10"
+                           WidthRequest="20"
+                           HeightRequest="20"
+                           HorizontalOptions="End"
+                           VerticalOptions="Start"
+                           Margin="0,-10,-5,0">
+                        <Label Text="!"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="12" />
+                    </Frame>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </ContentPage>

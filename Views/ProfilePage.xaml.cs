@@ -5,19 +5,35 @@ using LoginWithFirebase.ViewModel;
 using LoginWithFirebase.Model;
 using Firebase.Auth.Providers;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using Microsoft.Maui.Dispatching;
+using System.ComponentModel;
 
 namespace LoginWithFirebase.Views
 {
-    public partial class ProfilePage : ContentPage
+    public partial class ProfilePage : ContentPage, INotifyPropertyChanged
     {
         private FirebaseAuthClient _firebaseAuthClient;
         private readonly FirebaseClient _firebaseClient;
 
         private string _userId;
+
+        private bool _hasPendingFriendRequests;
+        public bool HasPendingFriendRequests
+        {
+            get => _hasPendingFriendRequests;
+            set
+            {
+                if (_hasPendingFriendRequests != value)
+                {
+                    _hasPendingFriendRequests = value;
+                    OnPropertyChanged(nameof(HasPendingFriendRequests));
+                }
+            }
+        }
 
         public ProfilePage(FirebaseAuthClient firebaseAuthClient)
         {
@@ -34,10 +50,18 @@ namespace LoginWithFirebase.Views
                 return;
             }
 
-            _ = LoadUserData();
+            BindingContext = this;
+
+           
         }
 
        
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadUserData();
+        }
+
         private async void OnInviteFriendsClicked(object sender, EventArgs e)
         {
             try
@@ -63,7 +87,7 @@ namespace LoginWithFirebase.Views
             }
         }
 
-       
+  
         private async void OnLogoutClicked(object sender, EventArgs e)
         {
             try
@@ -97,7 +121,6 @@ namespace LoginWithFirebase.Views
                 Preferences.Default?.Remove("UserEmail");
                 Preferences.Default?.Remove("UserId");
 
-                
                 var config = new FirebaseAuthConfig
                 {
                     ApiKey = "AIzaSyB5dQbIgcUlyWq1w2D_pkIkq4JPPG9mpLo",
@@ -131,7 +154,6 @@ namespace LoginWithFirebase.Views
                     return;
                 }
 
-                
                 Dispatcher.Dispatch(async () =>
                 {
                     await Task.Delay(50);
@@ -145,7 +167,7 @@ namespace LoginWithFirebase.Views
             }
         }
 
-       
+        
         private async Task LoadUserData()
         {
             try
@@ -163,10 +185,12 @@ namespace LoginWithFirebase.Views
                             ? $"#{user.InviteCode}"
                             : string.Empty;
 
-                       
+                        
                         InviteCodeLabel.Text = $"Invite Code: {inviteCodeDisplay}";
 
+                        
                         UsernameLabel.Text = user.Username ?? "Unknown";
+
                         if (!string.IsNullOrWhiteSpace(user.ProfilePictureUrl))
                         {
                             ProfileImage.Source = new UriImageSource
@@ -178,9 +202,13 @@ namespace LoginWithFirebase.Views
                         }
                         else
                         {
+                            
                             ProfileImage.Source = "maleprofile.png"; 
                         }
                     });
+
+                    
+                    await CheckPendingFriendRequests(user.InviteCode);
                 }
                 else
                 {
@@ -194,6 +222,42 @@ namespace LoginWithFirebase.Views
                 await DisplayAlert("Error",
                     $"An error occurred while fetching user data: {ex.Message}", "OK");
             }
+        }
+
+        
+        private async Task CheckPendingFriendRequests(string inviteCode)
+        {
+            if (string.IsNullOrWhiteSpace(inviteCode))
+            {
+                HasPendingFriendRequests = false;
+                return;
+            }
+
+            try
+            {
+                var pendingRequests = await _firebaseClient
+                    .Child("friend_requests")
+                    .OrderBy("toInviteCode")
+                    .EqualTo(inviteCode)
+                    .OnceAsync<FriendRequest>();
+
+                
+                HasPendingFriendRequests = pendingRequests.Any(r =>
+                    string.Equals(r.Object.Status, "pending", StringComparison.OrdinalIgnoreCase));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error checking pending friend requests: {ex.Message}");
+                HasPendingFriendRequests = false;
+            }
+        }
+
+        
+        public new event PropertyChangedEventHandler PropertyChanged;
+
+        protected new void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

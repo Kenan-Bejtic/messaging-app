@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace LoginWithFirebase.Model
 {
-    public class FriendDisplayModel
+    public class FriendDisplayModel : INotifyPropertyChanged
     {
-        public string FirebaseUid { get; set; } = string.Empty;       
-        public string Username { get; set; } = string.Empty;         
+        public string FirebaseUid { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
         public string ProfilePictureUrl { get; set; } = string.Empty;
-
+        public string LastMessage { get; set; } = string.Empty;
 
         private bool _hasUnreadMessages;
         public bool HasUnreadMessages
