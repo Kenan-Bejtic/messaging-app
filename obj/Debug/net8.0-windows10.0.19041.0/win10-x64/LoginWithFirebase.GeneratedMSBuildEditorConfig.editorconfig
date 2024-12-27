@@ -19,6 +19,9 @@ build_property.CsWinRTRcwFactoryFallbackGeneratorForceOptOut =
 build_property.CsWinRTCcwLookupTableGeneratorEnabled = true
 build_property.CsWinRTMergeReferencedActivationFactories = 
 build_property.CsWinRTAotWarningLevel = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
 [D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
@@ -67,6 +70,12 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.FriendInvitationPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\FriendInvitationPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\FriendInvitationPage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/ProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.ProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ProfilePage.xaml
 
 [D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/SignInPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

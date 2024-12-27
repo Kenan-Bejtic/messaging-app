@@ -19,4 +19,17 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+
+    <FlyoutItem Title="Home" Icon="logo.png">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPage}" />
+    </FlyoutItem>
+
+
+    <ShellContent 
+        Title="Chat" 
+        ContentTemplate="{DataTemplate views:ChatPage}" 
+        Shell.NavBarIsVisible="False" />
+
 </Shell>

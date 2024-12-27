@@ -24,6 +24,7 @@ namespace LoginWithFirebase
 
             _firebaseAuthClient = new FirebaseAuthClient(config);
 
+
             
             MainPage = new NavigationPage(new SignInPage(new SignInViewModel(_firebaseAuthClient)));
         }

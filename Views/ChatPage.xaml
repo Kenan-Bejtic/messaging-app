@@ -6,7 +6,9 @@
     xmlns:helpers="clr-namespace:LoginWithFirebase.Helpers"
     x:Class="LoginWithFirebase.Views.ChatPage"
     BackgroundColor="#E0F7FA"
-    NavigationPage.HasBackButton="False">
+    NavigationPage.HasBackButton="False"
+    Padding="0"
+    NavigationPage.HasNavigationBar="False">
 
     <StackLayout Padding="0" Margin="0" Spacing="0">
         <Grid BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="10">
@@ -30,7 +32,8 @@
 
         <CollectionView x:Name="MessagesCollectionView" 
                         VerticalOptions="FillAndExpand" 
-                        BackgroundColor="#E0F7FA">
+                        BackgroundColor="#E0F7FA"
+                        ItemsUpdatingScrollMode="KeepLastItemInView">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:MessageModel">
                     <StackLayout Padding="10">
@@ -41,14 +44,12 @@
                                HorizontalOptions="{Binding FromUserId, Converter={StaticResource BubbleAlignmentConverter}}">
 
                             <StackLayout>
-                                <!-- Image Message -->
                                 <Image Source="{Binding ImageUrl}"
                                        IsVisible="{Binding ImageUrl, Converter={StaticResource NullOrEmptyToBoolConverter}}"
                                        HeightRequest="200"
                                        Aspect="AspectFill"
                                        HorizontalOptions="FillAndExpand" />
 
-                                <!-- Text Message -->
                                 <Label Text="{Binding Content}" 
                                        FontSize="16"
                                        TextColor="Black"
@@ -61,7 +62,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Message Input Area -->
         <Grid Padding="10" BackgroundColor="{StaticResource EntryBackgroundColor}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -69,13 +69,12 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Send Image Button -->
             <Button Grid.Column="0"
                     Text="📷"
                     BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     TextColor="White"
                     FontSize="20"
-                WidthRequest="50"
+                    WidthRequest="50"
                     HeightRequest="50"
                     CornerRadius="25"
                     Clicked="OnSendImageClicked"
@@ -88,7 +87,6 @@
                 </Button.Triggers>
             </Button>
 
-            <!-- Message Entry Wrapped in Frame for Rounded Corners -->
             <Frame Grid.Column="1"
                    BackgroundColor="#FFFFFF"
                    CornerRadius="25"
@@ -103,14 +101,13 @@
                        />
             </Frame>
 
-            <!-- Send Button -->
             <Button Grid.Column="2"
                     Text="Send"
                     BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     TextColor="White"
                     FontSize="16"
                     WidthRequest="80" 
-                HeightRequest="50"
+                    HeightRequest="50"
                     CornerRadius="25"
                     Clicked="OnSendMessageClicked"
                     VerticalOptions="Center"

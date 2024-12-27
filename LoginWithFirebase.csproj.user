@@ -20,6 +20,9 @@
     <MauiXaml Update="Views\FriendInvitationPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\ProfilePage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\SignInPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

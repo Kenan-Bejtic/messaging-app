@@ -11,6 +11,8 @@ using LoginWithFirebase.ViewModel;
 using LoginWithFirebase.Model;
 using Firebase.Auth.Providers;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using Microsoft.Maui.Dispatching;
 
 namespace LoginWithFirebase
 {
@@ -19,11 +21,15 @@ namespace LoginWithFirebase
         private FirebaseAuthClient _firebaseAuthClient;
         private readonly FirebaseClient _firebaseClient;
 
-        private ObservableCollection<FriendDisplayModel> _friendList = new ObservableCollection<FriendDisplayModel>();
+        
+        private HashSet<string> _uniqueChatIds = new HashSet<string>();
+
+        private ObservableCollection<FriendDisplayModel> _chatList = new ObservableCollection<FriendDisplayModel>();
+
+        public ObservableCollection<FriendDisplayModel> FriendList => _chatList;
 
         private string _userId;
         private string _currentOpenChatUid = null;
-        public string inviteCode;
 
         public MainPage(FirebaseAuthClient firebaseAuthClient)
         {
@@ -33,42 +39,103 @@ namespace LoginWithFirebase
             _firebaseClient = new FirebaseClient("https://razvoj-mobilnih-aplikacija-default-rtdb.europe-west1.firebasedatabase.app/");
             _userId = Preferences.Default.Get("UserId", string.Empty);
 
-            
-            FriendsCollectionView.ItemsSource = _friendList;
+            ChatsCollectionView.ItemsSource = _chatList;
 
             if (string.IsNullOrWhiteSpace(_userId))
             {
-                Console.WriteLine("[ERROR] User ID is empty. Cannot load user data.");
+                Console.WriteLine("[ERROR] User ID is empty. Cannot load chat data.");
                 return;
             }
 
-            
-            _ = LoadUserData();
+            _ = LoadChatData();
 
-            
-            SubscribeToFriendChanges();
+            SubscribeToChatChanges();
 
             SubscribeToAllMessages();
         }
 
-        private void SubscribeToFriendChanges()
+        private async Task LoadChatData()
         {
-            
+            try
+            {
+                var user = await _firebaseClient
+                    .Child("users")
+                    .Child(_userId)
+                    .OnceSingleAsync<UserModel>();
+
+                if (user != null)
+                {
+                    if (user.Friends != null && user.Friends.Any())
+                    {
+                        _chatList.Clear();
+                        _uniqueChatIds.Clear();
+
+                        foreach (var friendInviteCode in user.Friends)
+                        {
+                            var matchingUser = (await _firebaseClient
+                                .Child("users")
+                                .OrderBy("inviteCode")
+                                .EqualTo(friendInviteCode)
+                                .OnceAsync<UserModel>())
+                                .FirstOrDefault();
+
+                            if (matchingUser == null)
+                            {
+                                Console.WriteLine($"[WARNING] No user found with inviteCode = {friendInviteCode}");
+                                continue;
+                            }
+
+                            var realUid = matchingUser.Key;
+                            var friendData = matchingUser.Object;
+
+                            if (friendData != null && !_uniqueChatIds.Contains(realUid))
+                            {
+                                var chatDisplay = new FriendDisplayModel
+                                {
+                                    FirebaseUid = realUid,
+                                    Username = friendData.Username,
+                                    ProfilePictureUrl = friendData.ProfilePictureUrl
+                                };
+
+                                MainThread.BeginInvokeOnMainThread(() =>
+                                {
+                                    Console.WriteLine($"[INFO] Adding chat with: {chatDisplay.Username}");
+                                    _chatList.Add(chatDisplay);
+                                    _uniqueChatIds.Add(realUid);
+                                });
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"[ERROR] No user data found at 'users/{_userId}'.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Error fetching chat data: {ex.Message}");
+                await DisplayAlert("Error",
+                    $"An error occurred while fetching chat data: {ex.Message}", "OK");
+            }
+        }
+
+        private void SubscribeToChatChanges()
+        {
             var observable = _firebaseClient
                 .Child("users")
                 .Child(_userId)
                 .Child("friends")
-                .AsObservable<string>();  
+                .AsObservable<string>();
 
             observable
                 .Subscribe(async fbEvent =>
                 {
                     if (fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
                     {
-                        var friendInviteCode = fbEvent.Object; 
+                        var friendInviteCode = fbEvent.Object;
                         if (!string.IsNullOrEmpty(friendInviteCode))
                         {
-                          
                             var matchingUser = (await _firebaseClient
                                 .Child("users")
                                 .OrderBy("inviteCode")
@@ -81,229 +148,62 @@ namespace LoginWithFirebase
                                 var realUid = matchingUser.Key;
                                 var friendData = matchingUser.Object;
 
-                              
-                                if (!_friendList.Any(f => f.FirebaseUid == realUid))
+                                
+                                if (!_uniqueChatIds.Contains(realUid))
                                 {
-                                    var friendDisplay = new FriendDisplayModel
+                                    var chatDisplay = new FriendDisplayModel
                                     {
                                         FirebaseUid = realUid,
                                         Username = friendData.Username,
                                         ProfilePictureUrl = friendData.ProfilePictureUrl
                                     };
-                                    _friendList.Add(friendDisplay);
-                                }
-                            }
-                        }
 
-                    }
-                });
-        }
-
-        private int count = 0;
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            CounterBtn.Text = count == 1
-                ? $"Clicked {count} time"
-                : $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
-
-        private void OnLogoutClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_firebaseAuthClient == null)
-                {
-                    Console.WriteLine("Error: FirebaseAuthClient is null. Cannot sign out.");
-                    return;
-                }
-
-                try
-                {
-                    var currentUser = _firebaseAuthClient.User;
-                    if (currentUser != null)
-                    {
-                        _firebaseAuthClient.SignOut();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Warning: No authenticated user found, clearing local preferences.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error during Firebase sign-out: " + ex.ToString());
-                }
-
-                Preferences.Default?.Remove("UserEmail");
-                Preferences.Default?.Remove("UserId");
-
-               
-                var config = new FirebaseAuthConfig
-                {
-                    ApiKey = "AIzaSyB5dQbIgcUlyWq1w2D_pkIkq4JPPG9mpLo",
-                    AuthDomain = "razvoj-mobilnih-aplikacija.firebaseapp.com",
-                    Providers = new FirebaseAuthProvider[]
-                    {
-                        new EmailProvider()
-                    }
-                };
-                _firebaseAuthClient = new FirebaseAuthClient(config);
-
-                if (Application.Current == null)
-                {
-                    Console.WriteLine("Error: Application.Current is null. Cannot navigate.");
-                    return;
-                }
-
-                
-                var signInViewModel = new SignInViewModel(_firebaseAuthClient);
-                if (signInViewModel == null)
-                {
-                    Console.WriteLine("Error: Failed to create SignInViewModel.");
-                    return;
-                }
-
-                var signInPage = new SignInPage(signInViewModel);
-                if (signInPage == null)
-                {
-                    Console.WriteLine("Error: Failed to create SignInPage.");
-                    return;
-                }
-
-                Dispatcher.Dispatch(async () =>
-                {
-                    await Task.Delay(50);
-                    Application.Current.MainPage = new NavigationPage(signInPage);
-                });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Logout failed: " + ex.ToString());
-            }
-        }
-
-        private async void FriendInvite(object sender, EventArgs e)
-        {
-            var friendInvitation = new FriendInvitationPage(inviteCode);
-            await Navigation.PushAsync(friendInvitation);
-        }
-
-        private async Task LoadUserData()
-        {
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(_userId))
-                {
-                    var user = await _firebaseClient
-                        .Child("users")
-                        .Child(_userId)
-                        .OnceSingleAsync<UserModel>();
-
-                    if (user != null)
-                    {
-                        inviteCode = user.InviteCode;
-
-                      
-                        Dispatcher.Dispatch(() =>
-                        {
-                            string inviteCodeDisplay = !string.IsNullOrWhiteSpace(user.InviteCode)
-                                ? $" #{user.InviteCode}"
-                                : string.Empty;
-
-                            UsernameLabel.Text = $"{user.Username ?? "Unknown"}{inviteCodeDisplay}";
-                            GenderLabel.Text = user.Gender ?? "Unknown";
-
-                            if (!string.IsNullOrWhiteSpace(user.ProfilePictureUrl))
-                            {
-                                ProfileImage.Source = new UriImageSource
-                                {
-                                    Uri = new Uri(user.ProfilePictureUrl),
-                                    CachingEnabled = true,
-                                    CacheValidity = TimeSpan.FromDays(1)
-                                };
-                            }
-                        });
-
-                       
-                        if (user.Friends != null && user.Friends.Any())
-                        {
-                            _friendList.Clear();
-
-                            foreach (var friendInviteCode in user.Friends) 
-                            {
-                                var matchingUser = (await _firebaseClient
-                                    .Child("users")
-                                    .OrderBy("inviteCode")
-                                    .EqualTo(friendInviteCode) 
-                                    .OnceAsync<UserModel>())
-                                    .FirstOrDefault();
-
-                                if (matchingUser == null)
-                                {
-                                    Console.WriteLine($"No user found with inviteCode = {friendInviteCode}");
-                                    continue;
-                                }
-
-                                var realUid = matchingUser.Key;
-                                var friendData = matchingUser.Object;
-                               
-
-                                if (friendData != null)
-                                {
-                                    var friendDisplay = new FriendDisplayModel
+                                    MainThread.BeginInvokeOnMainThread(() =>
                                     {
-                                        FirebaseUid = realUid,              
-                                        Username = friendData.Username,
-                                        ProfilePictureUrl = friendData.ProfilePictureUrl
-                                    };
-                                    _friendList.Add(friendDisplay);
+                                        Console.WriteLine($"[INFO] Adding new chat with: {chatDisplay.Username}");
+                                        _chatList.Add(chatDisplay);
+                                        _uniqueChatIds.Add(realUid);
+                                    });
                                 }
                             }
-
                         }
                     }
-                    else
+                });
+        }
+
+        private async void OnChatSelected(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+                {
+                    var selectedChat = e.CurrentSelection.FirstOrDefault() as FriendDisplayModel;
+                    if (selectedChat != null)
                     {
-                        Console.WriteLine($"[ERROR] No user data found at 'users/{_userId}'.");
+                        selectedChat.HasUnreadMessages = false;
+
+                        _currentOpenChatUid = selectedChat.FirebaseUid;
+
+                        
+                        await Navigation.PushAsync(new ChatPage(_userId, selectedChat.FirebaseUid, selectedChat.ProfilePictureUrl, selectedChat.Username));
                     }
+                    ChatsCollectionView.SelectedItem = null;
                 }
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine($"[ERROR] ArgumentOutOfRangeException in OnChatSelected: {ex.Message}");
+                await DisplayAlert("Error", "An unexpected error occurred while selecting a chat.", "OK");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] Error fetching user data: {ex.Message}");
-                await Application.Current.MainPage.DisplayAlert("Error",
-                    $"An error occurred while fetching user data: {ex.Message}", "OK");
+                Console.WriteLine($"[ERROR] Exception in OnChatSelected: {ex.Message}");
+                await DisplayAlert("Error", "An unexpected error occurred.", "OK");
             }
         }
-
-        private async void OnFriendSelected(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
-            {
-                var selectedFriend = e.CurrentSelection[0] as FriendDisplayModel;
-                if (selectedFriend != null)
-                {
-                    selectedFriend.HasUnreadMessages = false;
-
-                    _currentOpenChatUid = selectedFriend.FirebaseUid;
-
-                    // Pass friend's profile picture URL and username
-                    await Navigation.PushAsync(new ChatPage(_userId, selectedFriend.FirebaseUid, selectedFriend.ProfilePictureUrl, selectedFriend.Username));
-                }
-                FriendsCollectionView.SelectedItem = null;
-            }
-        }
-
-
 
         private void SubscribeToAllMessages()
         {
-           
-
             var observable = _firebaseClient
                 .Child("chats")
                 .AsObservable<MessageModel>()
@@ -314,29 +214,28 @@ namespace LoginWithFirebase
                         var newMsg = fbEvent.Object;
                         if (newMsg == null) return;
 
-                       
                         if (newMsg.ToUserId == _userId)
                         {
                             MainThread.BeginInvokeOnMainThread(() =>
                             {
-                                if (newMsg.ToUserId == _userId)
-{
-    if (_currentOpenChatUid != newMsg.FromUserId)
-    {
-        var friend = _friendList.FirstOrDefault(f => f.FirebaseUid == newMsg.FromUserId);
-        if (friend != null)
-        {
-            friend.HasUnreadMessages = true;
-        }
-    }
-}
+                                if (_currentOpenChatUid != newMsg.FromUserId)
+                                {
+                                    var chat = _chatList.FirstOrDefault(f => f.FirebaseUid == newMsg.FromUserId);
+                                    if (chat != null)
+                                    {
+                                        chat.HasUnreadMessages = true;
+                                    }
+                                }
                             });
                         }
                     }
                 });
         }
 
+        
+        private async void OnProfileButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ProfilePage(_firebaseAuthClient));
+        }
     }
-
-
 }

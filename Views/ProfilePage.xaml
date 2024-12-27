@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LoginWithFirebase.Model"
+    x:Class="LoginWithFirebase.Views.ProfilePage"
+    Title="Profile"
+    BackgroundColor="#E0F7FA"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,20" Spacing="25" BackgroundColor="#E0F7FA">
+
+           
+            <Image Source="logo.png"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   HorizontalOptions="Center" />
+
+           
+            <StackLayout Spacing="10" HorizontalOptions="Center">
+                
+                <Image
+                    x:Name="ProfileImage"
+                    HeightRequest="150"
+                    WidthRequest="150"
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center" />
+
+               
+                <Label
+                    x:Name="InviteCodeLabel"
+                    FontSize="18"
+                    TextColor="#333333"
+                    HorizontalOptions="Center" />
+
+                
+                <Label
+                    x:Name="UsernameLabel"
+                    FontSize="24"
+                    TextColor="#333333"
+                    HorizontalOptions="Center"
+                    FontAttributes="Bold" />
+            </StackLayout>
+
+
+            <Button
+                Text="Invite Friends"
+                Clicked="OnInviteFriendsClicked"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="60"
+                HorizontalOptions="FillAndExpand">
+                <Button.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="BackgroundColor" Value="#005BBB"/>
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button
+                Text="Logout"
+                Clicked="OnLogoutClicked"
+                BackgroundColor="#dc3545"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="60"
+                HorizontalOptions="FillAndExpand">
+                <Button.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="BackgroundColor" Value="#c82333"/>
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

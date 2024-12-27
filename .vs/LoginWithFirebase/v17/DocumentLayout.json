@@ -3,44 +3,16 @@
   "WorkspaceRootPath": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\chatpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\chatpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\friendinvitationpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\friendinvitationpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\profilepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\profilepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\helpers\\bubblealignmentconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:helpers\\bubblealignmentconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\chatpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\chatpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\viewmodel\\completeprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:viewmodel\\completeprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\model\\frienddisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:model\\frienddisplaymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:appshell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\profilepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\profilepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -54,142 +26,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProfilePage.xaml.cs",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ProfilePage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\ProfilePage.xaml.cs",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ProfilePage.xaml.cs",
+              "RelativeToolTip": "Views\\ProfilePage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALQAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T13:45:44.967Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FriendInvitationPage.xaml",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\FriendInvitationPage.xaml",
-              "RelativeDocumentMoniker": "Views\\FriendInvitationPage.xaml",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\FriendInvitationPage.xaml",
-              "RelativeToolTip": "Views\\FriendInvitationPage.xaml",
-              "ViewState": "AgIAALsAAAAAAAAAAAAuwMkAAAAAAAAAAAAAAA==",
+              "Title": "ProfilePage.xaml",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ProfilePage.xaml",
+              "RelativeDocumentMoniker": "Views\\ProfilePage.xaml",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ProfilePage.xaml",
+              "RelativeToolTip": "Views\\ProfilePage.xaml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAA0AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-26T16:00:41.721Z",
+              "WhenOpened": "2024-12-27T10:50:35.294Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChatPage.xaml",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ChatPage.xaml",
-              "RelativeDocumentMoniker": "Views\\ChatPage.xaml",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ChatPage.xaml",
-              "RelativeToolTip": "Views\\ChatPage.xaml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-26T15:39:09.811Z",
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "MainPage.xaml.cs",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\MainPage.xaml.cs",
+              "RelativeToolTip": "MainPage.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAADwvxcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T09:50:54.573Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BubbleAlignmentConverter.cs",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Helpers\\BubbleAlignmentConverter.cs",
-              "RelativeDocumentMoniker": "Helpers\\BubbleAlignmentConverter.cs",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Helpers\\BubbleAlignmentConverter.cs",
-              "RelativeToolTip": "Helpers\\BubbleAlignmentConverter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T15:38:22.158Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CompleteProfileViewModel.cs",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\ViewModel\\CompleteProfileViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\CompleteProfileViewModel.cs",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\ViewModel\\CompleteProfileViewModel.cs",
-              "RelativeToolTip": "ViewModel\\CompleteProfileViewModel.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAAAJEAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T15:34:54.311Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml.cs",
-              "RelativeDocumentMoniker": "App.xaml.cs",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml.cs",
-              "RelativeToolTip": "App.xaml.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T15:34:36.247Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AppShell.xaml.cs",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\AppShell.xaml.cs",
-              "RelativeDocumentMoniker": "AppShell.xaml.cs",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\AppShell.xaml.cs",
-              "RelativeToolTip": "AppShell.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T15:34:31.833Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AppShell.xaml",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\AppShell.xaml",
-              "RelativeDocumentMoniker": "AppShell.xaml",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\AppShell.xaml",
-              "RelativeToolTip": "AppShell.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-26T15:34:29.87Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "App.xaml",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-26T15:34:28.877Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\MainPage.xaml",
               "RelativeDocumentMoniker": "MainPage.xaml",
               "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\MainPage.xaml",
               "RelativeToolTip": "MainPage.xaml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAiwEcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAYwEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-26T15:09:10.099Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChatPage.xaml.cs",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ChatPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\ChatPage.xaml.cs",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\ChatPage.xaml.cs",
-              "RelativeToolTip": "Views\\ChatPage.xaml.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAQwIkAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T15:02:40.396Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FriendDisplayModel.cs",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Model\\FriendDisplayModel.cs",
-              "RelativeDocumentMoniker": "Model\\FriendDisplayModel.cs",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Model\\FriendDisplayModel.cs",
-              "RelativeToolTip": "Model\\FriendDisplayModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T15:16:34.635Z"
+              "WhenOpened": "2024-12-27T09:50:46.42Z",
+              "EditorCaption": ""
             }
           ]
         }

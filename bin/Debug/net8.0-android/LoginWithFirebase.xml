@@ -145,6 +145,23 @@
         <member name="P:LoginWithFirebase.ViewModel.VerificationViewModel.VerificationCode">
             <inheritdoc cref="F:LoginWithFirebase.ViewModel.VerificationViewModel._verificationCode"/>
         </member>
+        <member name="M:LoginWithFirebase.Views.ProfilePage.OnInviteFriendsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Invite Friends button click event.
+            Navigates to the FriendInvitationPage.
+            </summary>
+        </member>
+        <member name="M:LoginWithFirebase.Views.ProfilePage.OnLogoutClicked(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Logout button click event.
+            Signs the user out and navigates back to the SignInPage.
+            </summary>
+        </member>
+        <member name="M:LoginWithFirebase.Views.ProfilePage.LoadUserData">
+            <summary>
+            Loads the user's data from Firebase and displays it on the UI.
+            </summary>
+        </member>
         <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
             <summary>
             A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances

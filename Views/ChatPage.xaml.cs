@@ -19,7 +19,6 @@ namespace LoginWithFirebase.Views
         private ObservableCollection<MessageModel> _messages;
         private string _conversationId;
 
-        // Properties for binding header
         public string FriendProfilePictureUrl { get; set; }
         public string FriendUsername { get; set; }
 
@@ -50,9 +49,18 @@ namespace LoginWithFirebase.Views
             try
             {
                 var existingMessages = await _chatService.GetAllMessagesAsync(_conversationId);
+
                 foreach (var msg in existingMessages)
                 {
                     _messages.Add(msg);
+                }
+
+                if (_messages.Count > 0)
+                {
+                    MainThread.BeginInvokeOnMainThread(() =>
+                    {
+                        MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1], position: ScrollToPosition.End, animate: false);
+                    });
                 }
 
                 var observable = _chatService.SubscribeToMessages(_conversationId);
@@ -72,16 +80,15 @@ namespace LoginWithFirebase.Views
                                 m.FromUserId == newMsg.FromUserId))
                             {
                                 _messages.Add(newMsg);
-                            }
 
-                            // Scroll to the latest message
-                            MainThread.BeginInvokeOnMainThread(() =>
-                            {
-                                if (_messages.Count > 0)
+                                MainThread.BeginInvokeOnMainThread(() =>
                                 {
-                                    MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1], position: ScrollToPosition.End, animate: true);
-                                }
-                            });
+                                    if (_messages.Count > 0)
+                                    {
+                                        MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1], position: ScrollToPosition.End, animate: true);
+                                    }
+                                });
+                            }
                         }
                     });
             }
@@ -108,6 +115,11 @@ namespace LoginWithFirebase.Views
                 {
                     await _chatService.SendMessageAsync(_conversationId, newMessage);
                     MessageEntry.Text = string.Empty;
+
+                    if (_messages.Count > 0)
+                    {
+                        MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1], position: ScrollToPosition.End, animate: true);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -127,19 +139,16 @@ namespace LoginWithFirebase.Views
                 var storage = new FirebaseStorage("razvoj-mobilnih-aplikacija.appspot.com");
                 var fileName = $"{_currentUserId}_{Path.GetFileName(result.FullPath)}";
 
-                // Upload the image
                 var uploadTask = await storage
                     .Child("chat_images")
                     .Child(fileName)
                     .PutAsync(stream);
 
-                // Get the download URL
                 var downloadUrl = await storage
                     .Child("chat_images")
                     .Child(fileName)
                     .GetDownloadUrlAsync();
 
-                // Create the message with the image URL
                 var newMessage = new MessageModel
                 {
                     FromUserId = _currentUserId,
@@ -150,6 +159,11 @@ namespace LoginWithFirebase.Views
                 };
 
                 await _chatService.SendMessageAsync(_conversationId, newMessage);
+
+                if (_messages.Count > 0)
+                {
+                    MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1], position: ScrollToPosition.End, animate: true);
+                }
             }
             catch (Exception ex)
             {

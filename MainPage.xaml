@@ -2,70 +2,74 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:LoginWithFirebase.Model"
-             x:Class="LoginWithFirebase.MainPage">
+             x:Class="LoginWithFirebase.MainPage"
+             Title="Home"
+             BackgroundColor="White">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="30,0" Spacing="25">
-            <Label
-                x:Name="UsernameLabel"
-                FontSize="24"
-                HorizontalOptions="Center" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <!-- Navbar -->
+            <RowDefinition Height="*"/>
+            <!-- Content -->
+        </Grid.RowDefinitions>
 
-            <Label
-                x:Name="GenderLabel"
-                FontSize="18"
-                HorizontalOptions="Center" />
+        <!-- Custom Navbar -->
+        <Grid Grid.Row="0" BackgroundColor="Blue">
+            <Image Source="logo.png"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </Grid>
 
-            <Image
-                x:Name="ProfileImage"
-                HeightRequest="150"
-                WidthRequest="150"
-                Aspect="AspectFit"
-                HorizontalOptions="Center" />
+        <!-- Main Content -->
+        <Grid Grid.Row="1">
+            <ScrollView>
+                <VerticalStackLayout Padding="20,10" Spacing="20">
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
+                    <!-- Chats CollectionView -->
+                    <CollectionView x:Name="ChatsCollectionView"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnChatSelected"
+                                    ItemsSource="{Binding FriendList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="local:FriendDisplayModel">
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Image Source="{Binding ProfilePictureUrl}" 
+                                           WidthRequest="40" 
+                                           HeightRequest="40" 
+                                           Aspect="AspectFill"/>
+                                    <Label Text="{Binding Username}"
+                                           FontSize="14"
+                                           VerticalOptions="Center"
+                                           Margin="10,0,0,0">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding HasUnreadMessages}" Value="true">
+                                                <Setter Property="TextColor" Value="Red" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-            <Button
-                Text="Logout"
-                Clicked="OnLogoutClicked" />
+                </VerticalStackLayout>
+            </ScrollView>
 
-            <Button
-                Text="Friend"
-                Clicked="FriendInvite" />
-            
-            <CollectionView x:Name="FriendsCollectionView"
-                SelectionMode="Single"
-                SelectionChanged="OnFriendSelected"
-                HeightRequest="300">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="{x:Type local:FriendDisplayModel}">
-                        <StackLayout Orientation="Horizontal" Padding="10">
-                            <Image Source="{Binding ProfilePictureUrl}" 
-                       WidthRequest="40" 
-                       HeightRequest="40" 
-                       Aspect="AspectFill"/>
-                            <Label Text="{Binding Username}"
-       FontSize="14"
-       VerticalOptions="Center"
-       Margin="10,0,0,0">
-                                <Label.Triggers>
-                                    <DataTrigger TargetType="Label" Binding="{Binding HasUnreadMessages}" Value="true">
-                                        <Setter Property="TextColor" Value="Red" />
-                                    </DataTrigger>
-                                </Label.Triggers>
-                            </Label>
-
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-
-        </VerticalStackLayout>
-    </ScrollView>
+            <!-- Floating User Profile Button -->
+            <AbsoluteLayout>
+                <ImageButton Source="user_logo.png"
+                             WidthRequest="60"
+                             HeightRequest="60"
+                             CornerRadius="30"
+                             BackgroundColor="Transparent"
+                             Clicked="OnProfileButtonClicked"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"
+                             AbsoluteLayout.LayoutBounds="1, 1, 60, 60"
+                             Margin="0,0,20,20"/>
+            </AbsoluteLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
