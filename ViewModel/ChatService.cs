@@ -233,5 +233,103 @@ namespace LoginWithFirebase.ViewModel
                 .OnceSingleAsync<UserModel>();
         }
 
+
+        public async Task<Dictionary<string, Dictionary<string, object>>> GetAllChatsAsync()
+        {
+            var chats = await _firebaseClient
+                .Child("chats")
+                .OnceAsync<object>();
+
+            var chatDict = new Dictionary<string, Dictionary<string, object>>();
+
+            foreach (var chat in chats)
+            {
+                var chatData = chat.Object as Dictionary<string, object>;
+                if (chatData != null)
+                {
+                    chatDict.Add(chat.Key, chatData);
+                }
+            }
+
+            return chatDict;
+        }
+
+
+
+        public async Task RemoveFriendAsync(string userId, string friendId)
+        {
+            try
+            {
+                
+                var userFriends = await _firebaseClient
+                    .Child("users")
+                    .Child(userId)
+                    .Child("Friends")
+                    .OnceAsync<string>();
+
+                var updatedUserFriends = userFriends.Select(f => f.Object).ToList();
+                if (updatedUserFriends.Contains(friendId))
+                {
+                    updatedUserFriends.Remove(friendId);
+                    await _firebaseClient
+                        .Child("users")
+                        .Child(userId)
+                        .Child("Friends")
+                        .PutAsync(updatedUserFriends);
+                }
+
+                
+                var friendFriends = await _firebaseClient
+                    .Child("users")
+                    .Child(friendId)
+                    .Child("Friends")
+                    .OnceAsync<string>();
+
+                var updatedFriendFriends = friendFriends.Select(f => f.Object).ToList();
+                if (updatedFriendFriends.Contains(userId))
+                {
+                    updatedFriendFriends.Remove(userId);
+                    await _firebaseClient
+                        .Child("users")
+                        .Child(friendId)
+                        .Child("Friends")
+                        .PutAsync(updatedFriendFriends);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+       
+        public async Task LeaveGroupAsync(string groupChatId, string userId)
+        {
+            try
+            {
+                
+                var participantsRef = _firebaseClient
+                    .Child("chats")
+                    .Child(groupChatId)
+                    .Child("participants");
+
+                
+                var userExists = await participantsRef
+                    .Child(userId)
+                    .OnceSingleAsync<bool?>();
+
+                if (userExists == true)
+                {
+                   
+                    await participantsRef
+                        .Child(userId)
+                        .PutAsync(false);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

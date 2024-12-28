@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:LoginWithFirebase.Views"
+    x:Class="LoginWithFirebase.Views.FriendsListPage"
+    Title="Friends"
+    BackgroundColor="#E0F7FA"
+    NavigationPage.HasBackButton="True">
+
+    <StackLayout Padding="10" Spacing="20">
+
+        <!-- Friends Section -->
+        <Label Text="Friends" 
+               FontSize="Medium" 
+               TextColor="Black" 
+               HorizontalOptions="Center" />
+
+        <CollectionView x:Name="FriendsCollectionView"
+                        ItemsSource="{Binding Friends}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Name}" 
+                               FontSize="16" 
+                               VerticalOptions="Center" />
+
+                        <Button Text="Delete" 
+                                Grid.Column="1" 
+                                BackgroundColor="Red" 
+                                TextColor="White"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type views:FriendsListPage}}, Path=BindingContext.DeleteFriendCommand}"
+                                CommandParameter="{Binding Id}"
+                                WidthRequest="75"
+                                HeightRequest="35" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Groups Section -->
+        <Label Text="Groups" 
+               FontSize="Medium" 
+               TextColor="Black" 
+               HorizontalOptions="Center" />
+
+        <CollectionView x:Name="GroupsCollectionView"
+                        ItemsSource="{Binding Groups}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Name}" 
+                               FontSize="16" 
+                               VerticalOptions="Center" />
+
+                        <Button Text="Leave" 
+                                Grid.Column="1" 
+                                BackgroundColor="Red" 
+                                TextColor="White"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type views:FriendsListPage}}, Path=BindingContext.LeaveGroupCommand}"
+                                CommandParameter="{Binding Id}"
+                                WidthRequest="75"
+                                HeightRequest="35" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+</ContentPage>

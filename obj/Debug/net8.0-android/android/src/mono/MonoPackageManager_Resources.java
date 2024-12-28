@@ -3,6 +3,8 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "LoginWithFirebase.dll" comes first in this list. */
 		"LoginWithFirebase.dll",
+		"CommunityToolkit.Maui.dll",
+		"CommunityToolkit.Maui.Core.dll",
 		"CommunityToolkit.Mvvm.dll",
 		"FirebaseAdmin.dll",
 		"Firebase.Auth.dll",

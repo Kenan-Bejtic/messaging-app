@@ -252,7 +252,10 @@ namespace LoginWithFirebase.Views
             }
         }
 
-        
+
+       
+
+
         public new event PropertyChangedEventHandler PropertyChanged;
 
         protected new void OnPropertyChanged(string propertyName)

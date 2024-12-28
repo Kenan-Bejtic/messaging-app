@@ -32,7 +32,7 @@ namespace LoginWithFirebase
 
         public ObservableCollection<FriendDisplayModel> FriendList => _chatList;
 
-      
+
 
 
 
@@ -54,7 +54,7 @@ namespace LoginWithFirebase
             }
         }
 
-        
+
         private IDisposable _friendRequestsSubscription;
 
         public MainPage(FirebaseAuthClient firebaseAuthClient)
@@ -100,10 +100,10 @@ namespace LoginWithFirebase
 
                 if (user != null)
                 {
-                    
+
                     await LoadChatData();
 
-                    
+
                     await CheckPendingFriendRequests(user.InviteCode);
 
                     SubscribeToFriendRequestChanges(user.InviteCode);
@@ -126,7 +126,7 @@ namespace LoginWithFirebase
         {
             try
             {
-               
+
                 var user = await _firebaseClient
                     .Child("users")
                     .Child(_userId)
@@ -141,7 +141,7 @@ namespace LoginWithFirebase
                 _chatList.Clear();
                 _uniqueChatIds.Clear();
 
-               
+
                 if (user.Friends != null && user.Friends.Any())
                 {
                     foreach (var friendInviteCode in user.Friends)
@@ -166,7 +166,7 @@ namespace LoginWithFirebase
                         {
                             var chatDisplay = new FriendDisplayModel
                             {
-                                FirebaseUid = realUid,        
+                                FirebaseUid = realUid,
                                 Username = friendData.Username,
                                 ProfilePictureUrl = friendData.ProfilePictureUrl,
                                 IsGroup = false
@@ -182,49 +182,49 @@ namespace LoginWithFirebase
                     }
                 }
 
-               
+
                 var allChats = await _firebaseClient
                     .Child("chats")
                     .OnceAsync<dynamic>();
-                
+
 
                 foreach (var chat in allChats)
                 {
-                    
+
 
                     try
                     {
-                        var isGroupObj = chat.Object.isGroup;      
+                        var isGroupObj = chat.Object.isGroup;
                         if (isGroupObj == null) continue;
                         bool isGroup = (bool)isGroupObj;
-                        if (!isGroup) continue;                    
+                        if (!isGroup) continue;
 
-                        
+
                         var participants = chat.Object.participants;
                         if (participants == null) continue;
 
-                        
+
                         bool userIsParticipant = false;
-                      
+
                         try
                         {
                             userIsParticipant = participants[_userId] == true;
                         }
-                        catch {  }
+                        catch { }
 
-                        if (!userIsParticipant) continue;        
+                        if (!userIsParticipant) continue;
 
-                        
+
                         string groupName = (string)chat.Object.groupName;
 
-                        
+
                         if (!_uniqueChatIds.Contains(chat.Key))
                         {
                             var groupChatDisplay = new FriendDisplayModel
                             {
-                                FirebaseUid = chat.Key,        
-                                Username = groupName,         
-                                ProfilePictureUrl = "https://firebasestorage.googleapis.com/v0/b/razvoj-mobilnih-aplikacija.appspot.com/o/default_profile_pictures%2Fgroup-chat.png?alt=media&token=d14cdcf9-995a-449f-96ce-86701c5d8de1", 
+                                FirebaseUid = chat.Key,
+                                Username = groupName,
+                                ProfilePictureUrl = "https://firebasestorage.googleapis.com/v0/b/razvoj-mobilnih-aplikacija.appspot.com/o/default_profile_pictures%2Fgroup-chat.png?alt=media&token=d14cdcf9-995a-449f-96ce-86701c5d8de1",
                                 IsGroup = true
                             };
 
@@ -306,18 +306,18 @@ namespace LoginWithFirebase
         {
             if (selectedChat == null) return;
 
-            
+
             selectedChat.HasUnreadMessages = false;
 
-            
+
             _currentOpenChatUid = selectedChat.FirebaseUid;
 
-            
+
             try
             {
                 if (selectedChat.IsGroup)
                 {
-                    
+
                     await Navigation.PushAsync(new GroupConversationPage(
                         currentUserId: _userId,
                         groupChatId: selectedChat.FirebaseUid
@@ -325,7 +325,7 @@ namespace LoginWithFirebase
                 }
                 else
                 {
-                   
+
                     await Navigation.PushAsync(new ChatPage(
                         _userId,
                         selectedChat.FirebaseUid,
@@ -420,7 +420,7 @@ namespace LoginWithFirebase
                                             groupChat.HasUnreadMessages = true;
                                     });
                                 }
-                               
+
                                 else if (!string.IsNullOrEmpty(newMsg.ToUserId)
                                          && newMsg.ToUserId == _userId
                                          && newMsg.FromUserId != _userId

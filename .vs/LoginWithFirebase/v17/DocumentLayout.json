@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\signinpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\signinpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\viewmodel\\signinviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:viewmodel\\signinviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\views\\signuppage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:views\\signuppage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SignInPage.xaml",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\SignInPage.xaml",
+              "RelativeDocumentMoniker": "Views\\SignInPage.xaml",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\SignInPage.xaml",
+              "RelativeToolTip": "Views\\SignInPage.xaml",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAYwLsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-28T15:16:22.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SignUpPage.xaml.cs",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\SignUpPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\SignUpPage.xaml.cs",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\Views\\SignUpPage.xaml.cs",
+              "RelativeToolTip": "Views\\SignUpPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T15:15:09.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SignInViewModel.cs",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\ViewModel\\SignInViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\SignInViewModel.cs",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\ViewModel\\SignInViewModel.cs",
+              "RelativeToolTip": "ViewModel\\SignInViewModel.cs",
+              "ViewState": "AgIAAPMAAAAAAAAAAAAgwPYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T14:40:39.955Z",
+              "EditorCaption": ""
             }
           ]
         }
