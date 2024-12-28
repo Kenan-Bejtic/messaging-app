@@ -20,6 +20,12 @@
     <MauiXaml Update="Views\FriendInvitationPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Views\GroupChatPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
+    <MauiXaml Update="Views\GroupConversationPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\ProfilePage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

@@ -8,7 +8,7 @@ namespace LoginWithFirebase.Model
         public string Username { get; set; } = string.Empty;
         public string ProfilePictureUrl { get; set; } = string.Empty;
         public string LastMessage { get; set; } = string.Empty;
-
+        public bool IsGroup { get; set; }
         private bool _hasUnreadMessages;
         public bool HasUnreadMessages
         {

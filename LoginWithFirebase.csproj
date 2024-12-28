@@ -62,6 +62,7 @@
 	  <None Remove="Resources\Images\gender.png" />
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\maleprofile.jpg" />
+	  <None Remove="Resources\Images\placeholder_group.png" />
 	  <None Remove="Resources\Images\username.png" />
 	</ItemGroup>
 
@@ -86,6 +87,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\FriendInvitationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GroupChatPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GroupConversationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProfilePage.xaml">

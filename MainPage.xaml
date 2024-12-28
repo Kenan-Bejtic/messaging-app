@@ -94,6 +94,16 @@
                     </Frame>
                 </Grid>
             </Grid>
+
+            <StackLayout VerticalOptions="End" HorizontalOptions="Start" Margin="10">
+                <Button Text="Group Chat" 
+                    Clicked="OnGroupChatButtonClicked"
+                    BackgroundColor="#1976D2" 
+                    TextColor="White"
+                    CornerRadius="20"
+                    WidthRequest="120"
+                    HeightRequest="50" />
+            </StackLayout>
         </Grid>
     </Grid>
 </ContentPage>

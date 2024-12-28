@@ -1,0 +1,144 @@
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="LoginWithFirebase.Views.GroupConversationPage"
+    xmlns:model="clr-namespace:LoginWithFirebase.Model"
+    xmlns:helpers="clr-namespace:LoginWithFirebase.Helpers"
+    BackgroundColor="#E0F7FA"
+    NavigationPage.HasBackButton="False"
+    Padding="0"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <helpers:MergeUsernameContentConverter x:Key="MergeUsernameContentConverter" />
+    </ContentPage.Resources>
+
+    
+    <StackLayout Padding="0" Margin="0" Spacing="0">
+        
+        <Grid BackgroundColor="{StaticResource HeaderBackgroundColor}" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            
+            <Image Source="{Binding GroupImageUrl}"
+                   Style="{StaticResource CircularImageStyle}" 
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center" />
+
+            
+            <Label Grid.Column="1"
+                   Text="{Binding GroupName}"
+                   FontSize="18"
+                   TextColor="White"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0" />
+        </Grid>
+
+        
+        <CollectionView x:Name="MessagesCollectionView" 
+                        VerticalOptions="FillAndExpand" 
+                        BackgroundColor="#E0F7FA"
+                        ItemsUpdatingScrollMode="KeepLastItemInView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:MessageModel">
+                    <StackLayout Padding="10">
+                        <Frame Padding="10"
+               BackgroundColor="{Binding FromUserId, Converter={StaticResource BubbleBackgroundColorConverter}}"
+               CornerRadius="15"
+               HasShadow="False"
+               HorizontalOptions="{Binding FromUserId, Converter={StaticResource BubbleAlignmentConverter}}">
+
+                            <StackLayout>
+                                
+                                <Label Text="{Binding UsernameLine}"
+                       FontAttributes="Bold"
+                       FontSize="14"
+                       TextColor="Black"
+                       IsVisible="{Binding ShowUsername}"
+                       Margin="0,0,0,2" />
+
+                                
+                                <Image Source="{Binding ImageUrl}"
+                       IsVisible="{Binding ImageUrl, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                       HeightRequest="200"
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand" />
+
+                                
+                                <Label FontSize="16"
+                       TextColor="Black"
+                       IsVisible="{Binding Content, Converter={StaticResource NullOrEmptyToBoolConverter}}"
+                       LineBreakMode="WordWrap"
+                       Text="{Binding Content}" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        
+        <Grid Padding="10" BackgroundColor="{StaticResource EntryBackgroundColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            
+            <Button Grid.Column="0"
+                    Text="📷"
+                    BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                    TextColor="White"
+                    FontSize="20"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Clicked="OnSendImageClicked"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+                <Button.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonPressedColor}"/>
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+
+            
+            <Frame Grid.Column="1"
+                   BackgroundColor="#FFFFFF"
+                   CornerRadius="25"
+                   Padding="0"
+                   HasShadow="False">
+                <Entry x:Name="MessageEntry"
+                       Placeholder="Type a message..."
+                       FontSize="16"
+                       TextColor="#333333"
+                       VerticalOptions="Center"
+                       Margin="10,0"/>
+            </Frame>
+
+           
+            <Button Grid.Column="2"
+                    Text="Send"
+                    BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                    TextColor="White"
+                    FontSize="16"
+                    WidthRequest="80" 
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Clicked="OnSendMessageClicked"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+                <Button.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="BackgroundColor" Value="{StaticResource ButtonPressedColor}"/>
+                    </Trigger>
+                </Button.Triggers>
+            </Button>
+        </Grid>
+    </StackLayout>
+</ContentPage>

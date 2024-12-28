@@ -120,58 +120,120 @@ namespace LoginWithFirebase
         {
             try
             {
+               
                 var user = await _firebaseClient
                     .Child("users")
                     .Child(_userId)
                     .OnceSingleAsync<UserModel>();
 
-                if (user != null)
+                if (user == null)
                 {
-                    if (user.Friends != null && user.Friends.Any())
+                    Console.WriteLine($"[ERROR] No user data found at 'users/{_userId}'.");
+                    return;
+                }
+
+                _chatList.Clear();
+                _uniqueChatIds.Clear();
+
+               
+                if (user.Friends != null && user.Friends.Any())
+                {
+                    foreach (var friendInviteCode in user.Friends)
                     {
-                        _chatList.Clear();
-                        _uniqueChatIds.Clear();
+                        var matchingUser = (await _firebaseClient
+                            .Child("users")
+                            .OrderBy("inviteCode")
+                            .EqualTo(friendInviteCode)
+                            .OnceAsync<UserModel>())
+                            .FirstOrDefault();
 
-                        foreach (var friendInviteCode in user.Friends)
+                        if (matchingUser == null)
                         {
-                            var matchingUser = (await _firebaseClient
-                                .Child("users")
-                                .OrderBy("inviteCode")
-                                .EqualTo(friendInviteCode)
-                                .OnceAsync<UserModel>())
-                                .FirstOrDefault();
+                            Console.WriteLine($"[WARNING] No user found with inviteCode = {friendInviteCode}");
+                            continue;
+                        }
 
-                            if (matchingUser == null)
+                        var realUid = matchingUser.Key;
+                        var friendData = matchingUser.Object;
+
+                        if (friendData != null && !_uniqueChatIds.Contains(realUid))
+                        {
+                            var chatDisplay = new FriendDisplayModel
                             {
-                                Console.WriteLine($"[WARNING] No user found with inviteCode = {friendInviteCode}");
-                                continue;
-                            }
+                                FirebaseUid = realUid,        
+                                Username = friendData.Username,
+                                ProfilePictureUrl = friendData.ProfilePictureUrl,
+                                IsGroup = false
+                            };
 
-                            var realUid = matchingUser.Key;
-                            var friendData = matchingUser.Object;
-
-                            if (friendData != null && !_uniqueChatIds.Contains(realUid))
+                            MainThread.BeginInvokeOnMainThread(() =>
                             {
-                                var chatDisplay = new FriendDisplayModel
-                                {
-                                    FirebaseUid = realUid,
-                                    Username = friendData.Username,
-                                    ProfilePictureUrl = friendData.ProfilePictureUrl
-                                };
-
-                                MainThread.BeginInvokeOnMainThread(() =>
-                                {
-                                    Console.WriteLine($"[INFO] Adding chat with: {chatDisplay.Username}");
-                                    _chatList.Add(chatDisplay);
-                                    _uniqueChatIds.Add(realUid);
-                                });
-                            }
+                                Console.WriteLine($"[INFO] Adding single chat: {chatDisplay.Username}");
+                                _chatList.Add(chatDisplay);
+                                _uniqueChatIds.Add(realUid);
+                            });
                         }
                     }
                 }
-                else
+
+               
+                var allChats = await _firebaseClient
+                    .Child("chats")
+                    .OnceAsync<dynamic>();
+                
+
+                foreach (var chat in allChats)
                 {
-                    Console.WriteLine($"[ERROR] No user data found at 'users/{_userId}'.");
+                    
+
+                    try
+                    {
+                        var isGroupObj = chat.Object.isGroup;      
+                        if (isGroupObj == null) continue;
+                        bool isGroup = (bool)isGroupObj;
+                        if (!isGroup) continue;                    
+
+                        
+                        var participants = chat.Object.participants;
+                        if (participants == null) continue;
+
+                        
+                        bool userIsParticipant = false;
+                      
+                        try
+                        {
+                            userIsParticipant = participants[_userId] == true;
+                        }
+                        catch {  }
+
+                        if (!userIsParticipant) continue;        
+
+                        
+                        string groupName = (string)chat.Object.groupName;
+
+                        
+                        if (!_uniqueChatIds.Contains(chat.Key))
+                        {
+                            var groupChatDisplay = new FriendDisplayModel
+                            {
+                                FirebaseUid = chat.Key,        
+                                Username = groupName,         
+                                ProfilePictureUrl = "group_icon.png", 
+                                IsGroup = true
+                            };
+
+                            MainThread.BeginInvokeOnMainThread(() =>
+                            {
+                                Console.WriteLine($"[INFO] Adding group chat: {groupChatDisplay.Username}");
+                                _chatList.Add(groupChatDisplay);
+                                _uniqueChatIds.Add(chat.Key);
+                            });
+                        }
+                    }
+                    catch (Exception ex2)
+                    {
+                        Console.WriteLine($"[WARNING] Could not process chat {chat.Key}: {ex2.Message}");
+                    }
                 }
             }
             catch (Exception ex)
@@ -181,6 +243,7 @@ namespace LoginWithFirebase
                     $"An error occurred while fetching chat data: {ex.Message}", "OK");
             }
         }
+
 
         private void SubscribeToChatChanges()
         {
@@ -237,20 +300,30 @@ namespace LoginWithFirebase
         {
             try
             {
-                if (selectedChat != null)
+                if (selectedChat == null) return;
+
+                Console.WriteLine($"[DEBUG] Selected Chat: {selectedChat.Username}");
+                selectedChat.HasUnreadMessages = false;
+                _currentOpenChatUid = selectedChat.FirebaseUid;
+
+                if (selectedChat.IsGroup)
                 {
-                    Console.WriteLine($"[DEBUG] Selected Chat: {selectedChat.Username}");
-                    selectedChat.HasUnreadMessages = false;
-
-                    _currentOpenChatUid = selectedChat.FirebaseUid;
-
-                    await Navigation.PushAsync(new ChatPage(_userId, selectedChat.FirebaseUid, selectedChat.ProfilePictureUrl, selectedChat.Username));
+                    
+                    await Navigation.PushAsync(new GroupConversationPage(
+                        currentUserId: _userId,
+                        groupChatId: selectedChat.FirebaseUid
+                        
+                    ));
                 }
-            }
-            catch (ArgumentOutOfRangeException ex)
-            {
-                Console.WriteLine($"[ERROR] ArgumentOutOfRangeException in OnChatTapped: {ex.Message}");
-                await DisplayAlert("Error", "An unexpected error occurred while selecting a chat.", "OK");
+                else
+                {
+                    
+                    await Navigation.PushAsync(
+                        new ChatPage(_userId,
+                                     selectedChat.FirebaseUid,
+                                     selectedChat.ProfilePictureUrl,
+                                     selectedChat.Username));
+                }
             }
             catch (Exception ex)
             {
@@ -258,6 +331,7 @@ namespace LoginWithFirebase
                 await DisplayAlert("Error", "An unexpected error occurred.", "OK");
             }
         }
+
         private async void OnChatSelected(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -378,6 +452,11 @@ namespace LoginWithFirebase
         {
             base.OnDisappearing();
             _friendRequestsSubscription?.Dispose();
+        }
+
+        private async void OnGroupChatButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GroupChatPage(_userId));
         }
     }
 }

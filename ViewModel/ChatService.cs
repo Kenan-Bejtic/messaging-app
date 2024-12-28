@@ -1,20 +1,15 @@
 ﻿using Firebase.Database.Streaming;
 using Firebase.Database;
 using LoginWithFirebase.Model;
-using System;
-using Firebase.Database;
 using Firebase.Database.Query;
-using Firebase.Database.Streaming;
 using System.Reactive.Concurrency;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Concurrency;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reactive.Linq;
+using System.Threading;
+
 
 namespace LoginWithFirebase.ViewModel
-{ public class ChatService { 
+{
+    public class ChatService { 
     private readonly FirebaseClient _firebaseClient;
 
     public ChatService(string firebaseUrl)
@@ -62,8 +57,10 @@ namespace LoginWithFirebase.ViewModel
         return messages.Select(x => x.Object).ToList();
     }
 
-    
-    public async Task SendMessageAsync(string conversationId, MessageModel message)
+       
+
+
+        public async Task SendMessageAsync(string conversationId, MessageModel message)
     {
         await _firebaseClient
             .Child("chats")
@@ -82,5 +79,111 @@ namespace LoginWithFirebase.ViewModel
             .AsObservable<MessageModel>()
             .SubscribeOn(ThreadPoolScheduler.Instance);
     }
+
+
+
+
+
+
+
+
+        public async Task<string> CreateGroupAsync(string groupName, string creatorUserId)
+        {
+            string groupId = Guid.NewGuid().ToString("N").Substring(0, 8);
+
+            var groupData = new
+            {
+                isGroup = true,
+                groupName = groupName,
+                participants = new Dictionary<string, bool>
+        {
+            { creatorUserId, true }
+        }
+            };
+
+            await _firebaseClient
+                .Child("chats")
+                .Child(groupId)
+                .PutAsync(groupData);
+
+            return groupId;
+        }
+
+
+
+        public async Task JoinGroupAsync(string groupChatId, string userId)
+        {
+            
+            await _firebaseClient
+                .Child("chats")
+                .Child(groupChatId)
+                .Child("participants")
+                .Child(userId)
+                .PutAsync(true);
+        }
+
+
+        public async Task<string> GetGroupNameAsync(string groupChatId)
+        {
+            var chatData = await _firebaseClient
+                .Child("chats")
+                .Child(groupChatId)
+                .OnceSingleAsync<Dictionary<string, object>>();
+
+            if (chatData != null && chatData.ContainsKey("groupName"))
+                return chatData["groupName"]?.ToString();
+
+            return null;
+        }
+
+
+        public IObservable<FirebaseEvent<MessageModel>> SubscribeToGroupMessages(string groupChatId)
+        {
+            return _firebaseClient
+                .Child("chats")
+                .Child(groupChatId)
+                .Child("messages")
+                .AsObservable<MessageModel>();
+        }
+
+        
+        public async Task SendGroupMessageAsync(string groupChatId, MessageModel message)
+        {
+            await _firebaseClient
+                .Child("chats")
+                .Child(groupChatId)
+                .Child("messages")
+                .PostAsync(message);
+        }
+
+        
+        public async Task<List<MessageModel>> GetGroupMessagesAsync(string groupChatId)
+        {
+            var msgs = await _firebaseClient
+                .Child("chats")
+                .Child(groupChatId)
+                .Child("messages")
+                .OnceAsync<MessageModel>();
+
+            var result = new List<MessageModel>();
+            foreach (var m in msgs)
+            {
+                var model = m.Object;
+                
+                result.Add(model);
+            }
+
+            return result.OrderBy(m => m.Timestamp).ToList();
+        }
+
+        
+        public async Task<UserModel> GetUserByIdAsync(string userId)
+        {
+            return await _firebaseClient
+                .Child("users")
+                .Child(userId)
+                .OnceSingleAsync<UserModel>();
+        }
+
     }
 }

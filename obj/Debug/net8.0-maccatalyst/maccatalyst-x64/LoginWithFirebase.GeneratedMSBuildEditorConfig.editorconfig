@@ -67,6 +67,18 @@ build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.Fr
 build_metadata.AdditionalFiles.TargetPath = Views\FriendInvitationPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\FriendInvitationPage.xaml
 
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/GroupChatPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.GroupChatPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\GroupChatPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\GroupChatPage.xaml
+
+[D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/GroupConversationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.GroupConversationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\GroupConversationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\GroupConversationPage.xaml
+
 [D:/Razvoj Mobilnih Aplikacija/LoginWithFirebase/LoginWithFirebase/Views/ProfilePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = LoginWithFirebase.Views.ProfilePage.xaml
