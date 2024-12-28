@@ -109,6 +109,7 @@ namespace LoginWithFirebase.Views
                     ToUserId = _friendUserId,
                     Content = text,
                     Timestamp = DateTime.UtcNow
+                    
                 };
 
                 try
@@ -148,15 +149,16 @@ namespace LoginWithFirebase.Views
                     .Child("chat_images")
                     .Child(fileName)
                     .GetDownloadUrlAsync();
-
                 var newMessage = new MessageModel
                 {
                     FromUserId = _currentUserId,
-                    ToUserId = _friendUserId,
                     Content = "",
                     ImageUrl = downloadUrl,
-                    Timestamp = DateTime.UtcNow
+                    Timestamp = DateTime.UtcNow,
+                    ToUserId = ""
+                    
                 };
+
 
                 await _chatService.SendMessageAsync(_conversationId, newMessage);
 

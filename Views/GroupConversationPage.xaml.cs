@@ -11,6 +11,7 @@ using System.Threading;
 using System.IO;
 using System.Collections.Generic;
 using LoginWithFirebase.ViewModel;
+using System.Threading.Tasks;
 
 namespace LoginWithFirebase.Views
 {
@@ -23,7 +24,7 @@ namespace LoginWithFirebase.Views
 
         private ChatService _chatService;
         private ObservableCollection<MessageModel> _messages;
-        private Dictionary<string, string> _usernamesCache;  
+        private Dictionary<string, string> _usernamesCache;
 
         public string GroupName { get; set; }
         public string GroupImageUrl { get; set; }
@@ -36,7 +37,6 @@ namespace LoginWithFirebase.Views
         {
             InitializeComponent();
 
-            
             BubbleAlignmentConverter.CurrentUserId = currentUserId;
             BubbleBackgroundColorConverter.CurrentUserId = currentUserId;
 
@@ -47,7 +47,6 @@ namespace LoginWithFirebase.Views
                                 ? "placeholder_group.png"
                                 : groupImageUrl;
 
-            
             GroupName = _groupName;
             GroupImageUrl = _groupImageUrl;
             BindingContext = this;
@@ -65,16 +64,13 @@ namespace LoginWithFirebase.Views
         {
             try
             {
-                
+                // Fetch the actual group name
                 var actualGroupName = await _chatService.GetGroupNameAsync(_groupChatId);
                 GroupName = $"{actualGroupName} ({_groupChatId})";
-                
-                OnPropertyChanged(nameof(GroupName)); 
+                OnPropertyChanged(nameof(GroupName));
 
-                
+                // Load existing messages
                 var existingMessages = await _chatService.GetGroupMessagesAsync(_groupChatId);
-
-                
                 foreach (var msg in existingMessages)
                 {
                     await PopulateSenderUsername(msg);
@@ -82,10 +78,10 @@ namespace LoginWithFirebase.Views
                     _messages.Add(msg);
                 }
 
-                
+                // Scroll to the last message
                 if (_messages.Count > 0)
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
+                    await MainThread.InvokeOnMainThreadAsync(() =>
                     {
                         MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
                             position: ScrollToPosition.End,
@@ -93,44 +89,64 @@ namespace LoginWithFirebase.Views
                     });
                 }
 
-                
+                // Subscribe to new messages
                 var observable = _chatService.SubscribeToGroupMessages(_groupChatId);
                 observable
                     .ObserveOn(SynchronizationContext.Current)
-                    .Subscribe(async fbEvent =>
+                    .Subscribe(fbEvent =>
                     {
-                        if (fbEvent.EventType == FirebaseEventType.InsertOrUpdate)
-                        {
-                            var newMsg = fbEvent.Object;
-                            if (newMsg == null) return;
-
-                            
-                            if (!_messages.Any(m =>
-                                m.Timestamp == newMsg.Timestamp &&
-                                m.Content == newMsg.Content &&
-                                m.FromUserId == newMsg.FromUserId))
-                            {
-                                await PopulateSenderUsername(newMsg);
-                                ConfigureMessageProperties(newMsg);
-
-                                _messages.Add(newMsg);
-
-                                MainThread.BeginInvokeOnMainThread(() =>
-                                {
-                                    if (_messages.Count > 0)
-                                    {
-                                        MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
-                                            position: ScrollToPosition.End,
-                                            animate: true);
-                                    }
-                                });
-                            }
-                        }
+                        // Handle each event asynchronously
+                        HandleGroupMessageEventAsync(fbEvent).ConfigureAwait(false);
                     });
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
+
+        private async Task HandleGroupMessageEventAsync(FirebaseEvent<MessageModel> fbEvent)
+        {
+            try
+            {
+                if (fbEvent.EventType == FirebaseEventType.InsertOrUpdate)
+                {
+                    var newMsg = fbEvent.Object;
+                    if (newMsg == null) return;
+
+                    bool messageExists = _messages.Any(m =>
+                        m.Timestamp == newMsg.Timestamp &&
+                        m.Content == newMsg.Content &&
+                        m.FromUserId == newMsg.FromUserId);
+
+                    if (!messageExists)
+                    {
+                        await PopulateSenderUsername(newMsg);
+                        ConfigureMessageProperties(newMsg);
+
+                        // Ensure thread-safe addition
+                        await MainThread.InvokeOnMainThreadAsync(() =>
+                        {
+                            _messages.Add(newMsg);
+                        });
+
+                        // Scroll to the new message
+                        await MainThread.InvokeOnMainThreadAsync(() =>
+                        {
+                            if (_messages.Count > 0)
+                            {
+                                MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
+                                    position: ScrollToPosition.End,
+                                    animate: true);
+                            }
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it as needed
+                Console.WriteLine($"Error handling group message event: {ex.Message}");
             }
         }
 
@@ -140,23 +156,16 @@ namespace LoginWithFirebase.Views
             bool hasImage = !string.IsNullOrEmpty(msg.ImageUrl);
             bool hasText = !string.IsNullOrEmpty(msg.Content);
 
-           
             msg.ShowUsername = (!isFromMe) && hasText;
-
-            
             msg.UsernameLine = msg.ShowUsername ? msg.SenderUsername : "";
         }
 
-
-
-        
         private async Task PopulateSenderUsername(MessageModel msg)
         {
             if (string.IsNullOrEmpty(msg.FromUserId)) return;
 
             if (!_usernamesCache.ContainsKey(msg.FromUserId))
             {
-                
                 var userData = await _chatService.GetUserByIdAsync(msg.FromUserId);
                 if (userData != null && !string.IsNullOrEmpty(userData.Username))
                 {
@@ -164,16 +173,13 @@ namespace LoginWithFirebase.Views
                 }
                 else
                 {
-                    
                     _usernamesCache[msg.FromUserId] = "Unknown";
                 }
             }
 
-            
             msg.SenderUsername = _usernamesCache[msg.FromUserId];
         }
 
-        
         private async void OnSendMessageClicked(object sender, EventArgs e)
         {
             var text = MessageEntry.Text?.Trim();
@@ -184,8 +190,8 @@ namespace LoginWithFirebase.Views
                     FromUserId = _currentUserId,
                     Content = text,
                     Timestamp = DateTime.UtcNow,
-                    
-                    ToUserId = ""
+                    ToUserId = "",
+                    ChatId = _groupChatId
                 };
 
                 try
@@ -195,9 +201,12 @@ namespace LoginWithFirebase.Views
 
                     if (_messages.Count > 0)
                     {
-                        MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
-                            position: ScrollToPosition.End,
-                            animate: true);
+                        await MainThread.InvokeOnMainThreadAsync(() =>
+                        {
+                            MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
+                                position: ScrollToPosition.End,
+                                animate: true);
+                        });
                     }
                 }
                 catch (Exception ex)
@@ -207,7 +216,6 @@ namespace LoginWithFirebase.Views
             }
         }
 
-        
         private async void OnSendImageClicked(object sender, EventArgs e)
         {
             try
@@ -220,7 +228,7 @@ namespace LoginWithFirebase.Views
                 var fileName = $"{_currentUserId}_{Path.GetFileName(result.FullPath)}";
 
                 
-                var uploadTask = await storage
+                await storage
                     .Child("chat_images")
                     .Child(fileName)
                     .PutAsync(stream);
@@ -231,23 +239,26 @@ namespace LoginWithFirebase.Views
                     .Child(fileName)
                     .GetDownloadUrlAsync();
 
-                
                 var newMessage = new MessageModel
                 {
                     FromUserId = _currentUserId,
                     Content = "",
                     ImageUrl = downloadUrl,
                     Timestamp = DateTime.UtcNow,
-                    ToUserId = ""
+                    ToUserId = "",
+                    ChatId = _groupChatId
                 };
 
                 await _chatService.SendGroupMessageAsync(_groupChatId, newMessage);
 
                 if (_messages.Count > 0)
                 {
-                    MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
-                        position: ScrollToPosition.End,
-                        animate: true);
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    {
+                        MessagesCollectionView.ScrollTo(_messages[_messages.Count - 1],
+                            position: ScrollToPosition.End,
+                            animate: true);
+                    });
                 }
             }
             catch (Exception ex)

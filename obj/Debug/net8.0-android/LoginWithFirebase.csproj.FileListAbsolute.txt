@@ -1094,3 +1094,5 @@ D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\obj\Debug\net8
 D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\obj\Debug\net8.0-android\stamp\_GenerateJavaStubs.stamp
 D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\obj\Debug\net8.0-android\stamp\_GeneratePackageManagerJava.stamp
 D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\obj\Debug\net8.0-android\stamp\_ResolveLibraryProjectImports.stamp
+D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\obj\Debug\net8.0-android\resizetizer\r\drawable\groupchat.png
+D:\Razvoj Mobilnih Aplikacija\LoginWithFirebase\LoginWithFirebase\obj\Debug\net8.0-android\resizetizer\r\drawable\search.png

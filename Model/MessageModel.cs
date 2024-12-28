@@ -14,6 +14,7 @@ namespace LoginWithFirebase.Model
         public DateTime Timestamp { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
 
+        public string ChatId { get; set; } = string.Empty;
         public string DisplayMessage
         {
             get

@@ -60,9 +60,10 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\femaleprofile.jpg" />
 	  <None Remove="Resources\Images\gender.png" />
+	  <None Remove="Resources\Images\groupchat.png" />
 	  <None Remove="Resources\Images\logo.png" />
 	  <None Remove="Resources\Images\maleprofile.jpg" />
-	  <None Remove="Resources\Images\placeholder_group.png" />
+	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\username.png" />
 	</ItemGroup>
 

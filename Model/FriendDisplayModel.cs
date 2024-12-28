@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace LoginWithFirebase.Model
 {
@@ -18,11 +19,13 @@ namespace LoginWithFirebase.Model
                 if (_hasUnreadMessages != value)
                 {
                     _hasUnreadMessages = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasUnreadMessages)));
+                    OnPropertyChanged();
                 }
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

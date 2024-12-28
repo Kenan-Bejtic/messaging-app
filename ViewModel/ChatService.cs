@@ -69,8 +69,31 @@ namespace LoginWithFirebase.ViewModel
             .PostAsync(message);
     }
 
-   
-    public IObservable<FirebaseEvent<MessageModel>> SubscribeToMessages(string conversationId)
+        public async Task<bool> GroupExistsAsync(string groupChatId)
+        {
+            try
+            {
+                var group = await _firebaseClient
+                    .Child("chats")
+                    .Child(groupChatId)
+                    .OnceSingleAsync<object>();
+
+                return group != null;
+            }
+            catch (FirebaseException)
+            {
+                
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+        public IObservable<FirebaseEvent<MessageModel>> SubscribeToMessages(string conversationId)
     {
         return _firebaseClient
             .Child("chats")
@@ -95,6 +118,7 @@ namespace LoginWithFirebase.ViewModel
             {
                 isGroup = true,
                 groupName = groupName,
+                profilePictureUrl = "https://firebasestorage.googleapis.com/v0/b/razvoj-mobilnih-aplikacija.appspot.com/o/default_profile_pictures%2Fgroup-chat.png?alt=media&token=90ec02b4-a011-4019-b40d-b3d95ffb7ba6",
                 participants = new Dictionary<string, bool>
         {
             { creatorUserId, true }
@@ -113,14 +137,38 @@ namespace LoginWithFirebase.ViewModel
 
         public async Task JoinGroupAsync(string groupChatId, string userId)
         {
-            
-            await _firebaseClient
-                .Child("chats")
-                .Child(groupChatId)
-                .Child("participants")
-                .Child(userId)
-                .PutAsync(true);
+            try
+            {
+               
+                var participantsRef = _firebaseClient
+                    .Child("chats")
+                    .Child(groupChatId)
+                    .Child("participants");
+
+                
+                var userExists = await participantsRef
+                    .Child(userId)
+                    .OnceSingleAsync<bool?>();
+
+                if (userExists == null)
+                {
+                   
+                    await participantsRef
+                        .Child(userId)
+                        .PutAsync(true);
+                }
+                else
+                {
+                  
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+
+
 
 
         public async Task<string> GetGroupNameAsync(string groupChatId)

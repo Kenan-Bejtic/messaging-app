@@ -13,6 +13,8 @@ using Firebase.Auth.Providers;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using Microsoft.Maui.Dispatching;
+using Firebase.Database.Streaming;
+using System.Diagnostics;
 
 namespace LoginWithFirebase
 {
@@ -29,6 +31,10 @@ namespace LoginWithFirebase
         private ObservableCollection<FriendDisplayModel> _chatList = new ObservableCollection<FriendDisplayModel>();
 
         public ObservableCollection<FriendDisplayModel> FriendList => _chatList;
+
+      
+
+
 
         private string _userId;
         private string _currentOpenChatUid = null;
@@ -218,7 +224,7 @@ namespace LoginWithFirebase
                             {
                                 FirebaseUid = chat.Key,        
                                 Username = groupName,         
-                                ProfilePictureUrl = "group_icon.png", 
+                                ProfilePictureUrl = "https://firebasestorage.googleapis.com/v0/b/razvoj-mobilnih-aplikacija.appspot.com/o/default_profile_pictures%2Fgroup-chat.png?alt=media&token=d14cdcf9-995a-449f-96ce-86701c5d8de1", 
                                 IsGroup = true
                             };
 
@@ -298,31 +304,34 @@ namespace LoginWithFirebase
 
         private async Task OnChatTapped(FriendDisplayModel selectedChat)
         {
+            if (selectedChat == null) return;
+
+            
+            selectedChat.HasUnreadMessages = false;
+
+            
+            _currentOpenChatUid = selectedChat.FirebaseUid;
+
+            
             try
             {
-                if (selectedChat == null) return;
-
-                Console.WriteLine($"[DEBUG] Selected Chat: {selectedChat.Username}");
-                selectedChat.HasUnreadMessages = false;
-                _currentOpenChatUid = selectedChat.FirebaseUid;
-
                 if (selectedChat.IsGroup)
                 {
                     
                     await Navigation.PushAsync(new GroupConversationPage(
                         currentUserId: _userId,
                         groupChatId: selectedChat.FirebaseUid
-                        
                     ));
                 }
                 else
                 {
-                    
-                    await Navigation.PushAsync(
-                        new ChatPage(_userId,
-                                     selectedChat.FirebaseUid,
-                                     selectedChat.ProfilePictureUrl,
-                                     selectedChat.Username));
+                   
+                    await Navigation.PushAsync(new ChatPage(
+                        _userId,
+                        selectedChat.FirebaseUid,
+                        selectedChat.ProfilePictureUrl,
+                        selectedChat.Username
+                    ));
                 }
             }
             catch (Exception ex)
@@ -363,35 +372,81 @@ namespace LoginWithFirebase
             }
         }
 
+        private List<IDisposable> _messageSubscriptions = new List<IDisposable>();
+
         private void SubscribeToAllMessages()
         {
-            var observable = _firebaseClient
-                .Child("chats")
-                .AsObservable<MessageModel>()
-                .Subscribe(fbEvent =>
-                {
-                    if (fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
-                    {
-                        var newMsg = fbEvent.Object;
-                        if (newMsg == null) return;
+            foreach (var chatItem in _chatList)
+            {
+                var chatId = chatItem.FirebaseUid;
 
-                        if (newMsg.ToUserId == _userId)
+                Console.WriteLine($"[DEBUG] Setting up subscription for chat '{chatId}'");
+
+                var sub = _firebaseClient
+                    .Child("chats")
+                    .Child(chatId)
+                    .Child("messages")
+                    .AsObservable<MessageModel>()
+                    .Subscribe(fbEvent =>
+                    {
+                        try
                         {
-                            MainThread.BeginInvokeOnMainThread(() =>
+                            Console.WriteLine($"[DEBUG] Subscription triggered for chat {chatId}: {fbEvent.EventType}");
+
+                            if (fbEvent.EventType == Firebase.Database.Streaming.FirebaseEventType.InsertOrUpdate)
                             {
-                                if (_currentOpenChatUid != newMsg.FromUserId)
+                                var newMsg = fbEvent.Object;
+                                if (newMsg == null)
                                 {
-                                    var chat = _chatList.FirstOrDefault(f => f.FirebaseUid == newMsg.FromUserId);
-                                    if (chat != null)
-                                    {
-                                        chat.HasUnreadMessages = true;
-                                    }
+                                    Console.WriteLine("[DEBUG] newMsg is null, skipping...");
+                                    return;
                                 }
-                            });
+
+                                Console.WriteLine($"[DEBUG] FromUserId='{newMsg.FromUserId}', " +
+                                                  $"ToUserId='{newMsg.ToUserId}', " +
+                                                  $"ChatId='{newMsg.ChatId}'");
+
+                                if (string.IsNullOrEmpty(newMsg.ToUserId)
+                                    && newMsg.FromUserId != _userId
+                                    && !string.IsNullOrEmpty(newMsg.ChatId)
+                                    && _currentOpenChatUid != newMsg.ChatId)
+                                {
+                                    Console.WriteLine("[DEBUG] Group chat logic triggered");
+                                    MainThread.BeginInvokeOnMainThread(() =>
+                                    {
+                                        var groupChat = _chatList.FirstOrDefault(
+                                            f => f.FirebaseUid == newMsg.ChatId && f.IsGroup);
+                                        if (groupChat != null)
+                                            groupChat.HasUnreadMessages = true;
+                                    });
+                                }
+                               
+                                else if (!string.IsNullOrEmpty(newMsg.ToUserId)
+                                         && newMsg.ToUserId == _userId
+                                         && newMsg.FromUserId != _userId
+                                         && _currentOpenChatUid != newMsg.FromUserId)
+                                {
+                                    Console.WriteLine("[DEBUG] Single chat logic triggered");
+                                    MainThread.BeginInvokeOnMainThread(() =>
+                                    {
+                                        var singleChat = _chatList.FirstOrDefault(
+                                            f => f.FirebaseUid == newMsg.FromUserId && !f.IsGroup);
+                                        if (singleChat != null)
+                                            singleChat.HasUnreadMessages = true;
+                                    });
+                                }
+                            }
                         }
-                    }
-                });
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"[ERROR] in subscription for chat {chatId}: {ex}");
+                        }
+                    });
+
+                _messageSubscriptions.Add(sub);
+            }
         }
+
 
         private async void OnProfileButtonClicked(object sender, EventArgs e)
         {
@@ -459,4 +514,5 @@ namespace LoginWithFirebase
             await Navigation.PushAsync(new GroupChatPage(_userId));
         }
     }
+
 }

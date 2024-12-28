@@ -1,6 +1,8 @@
 using LoginWithFirebase.ViewModel;
 using Microsoft.Maui.Controls;
 using System;
+using System.Threading.Tasks;
+using LoginWithFirebase.Model; 
 
 namespace LoginWithFirebase.Views
 {
@@ -9,13 +11,11 @@ namespace LoginWithFirebase.Views
         private string _currentUserId;
         private ChatService _chatService;
 
-
         public GroupChatPage(string currentUserId)
         {
             InitializeComponent();
             _currentUserId = currentUserId;
 
-            
             _chatService = new ChatService("https://razvoj-mobilnih-aplikacija-default-rtdb.europe-west1.firebasedatabase.app/");
         }
 
@@ -33,15 +33,19 @@ namespace LoginWithFirebase.Views
                 
                 var newGroupChatId = await _chatService.CreateGroupAsync(groupName, _currentUserId);
 
-                
                 await DisplayAlert("Success", $"Group '{groupName}' created!\nID: {newGroupChatId}", "OK");
 
-                
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new GroupConversationPage(_currentUserId, newGroupChatId, "placeholder_group.png", groupName));
+
+               
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlert("Error", $"Failed to create group: {ex.Message}", "OK");
+            }
+            finally
+            {
+                
             }
         }
 
@@ -57,17 +61,32 @@ namespace LoginWithFirebase.Views
             try
             {
                 
+                bool groupExists = await _chatService.GroupExistsAsync(groupChatId);
+
+                if (!groupExists)
+                {
+                   
+                    await DisplayAlert("Error", $"Group with ID '{groupChatId}' does not exist.", "OK");
+                    return;
+                }
+
+                
                 await _chatService.JoinGroupAsync(groupChatId, _currentUserId);
 
                 await DisplayAlert("Success", $"Joined group with ID: {groupChatId}", "OK");
 
                 
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new GroupConversationPage(_currentUserId, groupChatId, "placeholder_group.png", "Group Chat"));
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "OK");
+                await DisplayAlert("Error", $"Failed to join group: {ex.Message}", "OK");
+            }
+            finally
+            {
+                
             }
         }
     }
 }
+

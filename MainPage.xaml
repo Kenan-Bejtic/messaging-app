@@ -26,38 +26,61 @@
         <Grid Grid.Row="1">
             <ScrollView>
                 <VerticalStackLayout Padding="20,10" Spacing="20">
-
                     <CollectionView x:Name="ChatsCollectionView"
-                SelectionMode="None"
-                ItemsSource="{Binding FriendList}">
+                ItemsSource="{Binding FriendList}"
+                SelectionMode="None">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="local:FriendDisplayModel">
                                 <Frame HasShadow="True"
-                   BorderColor="#E0E0E0"
-                   CornerRadius="10"
-                   Padding="10"
-                   Margin="5">
+             BorderColor="#E0E0E0"
+             CornerRadius="10"
+             Padding="10"
+             Margin="5">
+
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.ItemTappedCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
-                                          CommandParameter="{Binding}" />
+                                        <TapGestureRecognizer 
+              Command="{Binding BindingContext.ItemTappedCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+              CommandParameter="{Binding}" />
                                     </Frame.GestureRecognizers>
+
                                     <HorizontalStackLayout Spacing="15">
+                                        
                                         <Frame WidthRequest="50"
-                           HeightRequest="50"
-                           CornerRadius="25"
-                           IsClippedToBounds="True"
-                           Padding="0"
-                           BorderColor="Transparent">
+                 HeightRequest="50"
+                 CornerRadius="25"
+                 IsClippedToBounds="True"
+                 Padding="0"
+                 BorderColor="Transparent">
                                             <Image Source="{Binding ProfilePictureUrl}" 
-                               Aspect="AspectFill" />
+                   Aspect="AspectFill"
+                                                    />
                                         </Frame>
 
-                                        <VerticalStackLayout VerticalOptions="Center">
+                                        
+                                        <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                           
                                             <Label Text="{Binding Username}"
-                               FontSize="16"
-                               FontAttributes="Bold"
-                               TextColor="#007AFF" />
-                                        </VerticalStackLayout>
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#007AFF"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start" />
+
+                                            
+                                            <Frame BackgroundColor="Red"
+                   WidthRequest="18"
+                   HeightRequest="18"
+                   CornerRadius="9"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                   IsVisible="{Binding HasUnreadMessages}">
+                                                <Label Text="!"
+                     TextColor="White"
+                     FontSize="12"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center" />
+                                            </Frame>
+                                        </Grid>
                                     </HorizontalStackLayout>
                                 </Frame>
                             </DataTemplate>
@@ -65,10 +88,11 @@
                     </CollectionView>
 
 
+
                 </VerticalStackLayout>
             </ScrollView>
 
-            <Grid HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,20">
+            <Grid HorizontalOptions="End" VerticalOptions="End" Margin="0,0,20,5">
                 <Grid>
                     <ImageButton Source="user_logo.png"
                                  WidthRequest="60"
