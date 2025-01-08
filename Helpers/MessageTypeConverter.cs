@@ -24,8 +24,7 @@ namespace LoginWithFirebase.Helpers
 
         private bool IsImageMessage(string message)
         {
-            // Implement your logic to determine if the message is an image
-            // For example, check if it's a URL ending with an image extension
+          
             if (Uri.TryCreate(message, UriKind.Absolute, out var uri))
             {
                 var extensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };

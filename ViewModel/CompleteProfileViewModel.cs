@@ -30,7 +30,7 @@ namespace LoginWithFirebase.ViewModel
         [ObservableProperty]
         private string inviteCode;
 
-        public List<string> Genders { get; } = new List<string> { "Muški", "Ženski", "Ostalo" };
+        public List<string> Genders { get; } = new List<string> { "Muški", "Ženski" };
 
         
         private readonly string _defaultMaleProfileUrl = DefaultProfilePictures.MaleProfileUrl;
@@ -55,7 +55,7 @@ namespace LoginWithFirebase.ViewModel
             if (string.IsNullOrWhiteSpace(Username))
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
-                    "Username is required.",
+                    "Korisničko ime je obavezno.",
                     "OK");
                 return;
             }
@@ -63,7 +63,7 @@ namespace LoginWithFirebase.ViewModel
             if (string.IsNullOrWhiteSpace(Gender))
             {
                 await Application.Current.MainPage.DisplayAlert("Error",
-                    "Please select your gender.",
+                    "Molim vas da odaberete spol.",
                     "OK");
                 return;
             }
@@ -167,8 +167,8 @@ namespace LoginWithFirebase.ViewModel
                             .PatchAsync(profilePictureData);
 
                         await Application.Current.MainPage.DisplayAlert(
-                            "Success",
-                            "Profile picture uploaded successfully.",
+                            "Info",
+                            "Uspješno ste uploadali sliku.",
                             "OK");
                     }
                 }

@@ -23,8 +23,9 @@
                    WidthRequest="150"
                    HorizontalOptions="Center"/>
 
-            <Label Text="Create a New Account"
+            <Label Text="Kreiranje novog računa"
                    FontSize="22"
+                   Style="{StaticResource GlobalFontStyle}"
                    TextColor="#333333"
                    HorizontalTextAlignment="Center"
                    FontAttributes="Bold"/>
@@ -52,7 +53,8 @@
 
                 <Entry Grid.Column="1"
                        Text="{Binding SignUpModel.Email}"
-                       Placeholder="User Email"
+                       Style="{StaticResource GlobalFontStyle}"
+                       Placeholder="Korisnički Email"
                        Keyboard="Email"
                        BackgroundColor="Transparent"
                        PlaceholderColor="#A0A0A0"
@@ -86,7 +88,8 @@
 
                 <Entry Grid.Column="1"
                        Text="{Binding SignUpModel.Password}"
-                       Placeholder="Password"
+                       Placeholder="Šifra"
+                       Style="{StaticResource GlobalFontStyle}"
                        IsPassword="True"
                        BackgroundColor="Transparent"
                        PlaceholderColor="#A0A0A0"
@@ -97,8 +100,9 @@
                        AutomationProperties.HelpText="Password"/>
             </Grid>
 
-            <Button Text="Sign Up"
+            <Button Text="Regestracija"
                     BackgroundColor="#007AFF"
+                    Style="{StaticResource ButtonStyle}"
                     TextColor="White"
                     FontAttributes="Bold"
                     CornerRadius="25"
@@ -119,11 +123,12 @@
             Spacing="10" 
             HorizontalOptions="Center"
             Padding="0,15,0,0">
-            <Label Text="Already have an account? "
+            <Label Text="Već imate račun? "
                    TextColor="#666666"
                    VerticalOptions="Center"/>
 
-            <Button Text="Sign in"
+            <Button Text="Prijava"
+                    Style="{StaticResource ButtonStyle}"
                     BackgroundColor="Transparent"
                     TextColor="#007AFF"
                     FontAttributes="Bold"

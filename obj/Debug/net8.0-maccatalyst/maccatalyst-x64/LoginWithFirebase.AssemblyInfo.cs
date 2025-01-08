@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoginWithFirebase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+68615d0b820e90fa5fc8cfec766c02027d6ae86f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+ec61442e725a47d0c1cc052659c20650df595982")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoginWithFirebase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoginWithFirebase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

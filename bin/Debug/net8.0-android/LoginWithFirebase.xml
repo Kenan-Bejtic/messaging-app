@@ -145,22 +145,6 @@
         <member name="P:LoginWithFirebase.ViewModel.VerificationViewModel.VerificationCode">
             <inheritdoc cref="F:LoginWithFirebase.ViewModel.VerificationViewModel._verificationCode"/>
         </member>
-        <member name="M:LoginWithFirebase.Views.FriendsListPage.GetAllGroups">
-            <summary>
-            Retrieves all groups the current user is a participant of.
-            </summary>
-            <returns>A dictionary of groupChatId to group data.</returns>
-        </member>
-        <member name="T:LoginWithFirebase.Views.FriendItem">
-            <summary>
-            Represents a friend item.
-            </summary>
-        </member>
-        <member name="T:LoginWithFirebase.Views.GroupItem">
-            <summary>
-            Represents a group item.
-            </summary>
-        </member>
         <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
             <summary>
             Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color

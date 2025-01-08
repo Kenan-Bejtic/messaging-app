@@ -29,6 +29,7 @@
 
             
             <Label Grid.Column="1"
+                   Style="{StaticResource GlobalFontStyle}"
                    Text="{Binding GroupName}"
                    FontSize="18"
                    TextColor="White"
@@ -67,8 +68,9 @@
                        HorizontalOptions="FillAndExpand" />
 
                                 
-                                <Label FontSize="16"
+                                <Label 
                        TextColor="Black"
+                                       Style="{StaticResource GlobalFontStyle}"
                        IsVisible="{Binding Content, Converter={StaticResource NullOrEmptyToBoolConverter}}"
                        LineBreakMode="WordWrap"
                        Text="{Binding Content}" />
@@ -114,7 +116,7 @@
                    Padding="0"
                    HasShadow="False">
                 <Entry x:Name="MessageEntry"
-                       Placeholder="Type a message..."
+                       Placeholder="Unesite poruku..."
                        FontSize="16"
                        TextColor="#333333"
                        VerticalOptions="Center"
@@ -123,7 +125,8 @@
 
            
             <Button Grid.Column="2"
-                    Text="Send"
+                    Text="Pošalji"
+                    Style="{StaticResource GlobalFontStyle}"
                     BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     TextColor="White"
                     FontSize="16"

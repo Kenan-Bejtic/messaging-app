@@ -43,7 +43,7 @@ namespace LoginWithFirebase.ViewModel
             {
                 if (_signInModel == null || string.IsNullOrWhiteSpace(_signInModel.Email) || string.IsNullOrWhiteSpace(_signInModel.Password))
                 {
-                    await HandleError(page, "Email or password is missing. Please provide valid credentials.");
+                    await HandleError(page, "Email ili password nedostaje. Molimo da provjerite validnost podataka.");
                     return;
                 }
 
@@ -71,7 +71,7 @@ namespace LoginWithFirebase.ViewModel
 
                 if (!isEmailVerified)
                 {
-                    await HandleError(page, "Your email is not verified. Please verify your email before signing in.");
+                    await HandleError(page, "Vaš email nije verifikovan. Molimo da ga verifikujete da bi mogli pristupiti aplikaciji.");
                     return;
                 }
 
@@ -144,7 +144,7 @@ namespace LoginWithFirebase.ViewModel
             }
             catch (FirebaseAuthException ex)
             {
-                await HandleError(page, "The email or password is incorrect. Please try again.");
+                await HandleError(page, "Email ili password je pogrešan. Probajte ponovo.");
                 Console.WriteLine($"FirebaseAuthException: {ex.Reason} | {ex.Message}");
             }
             catch (NullReferenceException ex)
@@ -235,10 +235,10 @@ namespace LoginWithFirebase.ViewModel
         private async Task ForgotPassword()
         {
             string email = await Application.Current.MainPage.DisplayPromptAsync(
-                "Forgot Password",
-                "Enter your email to reset password:",
-                "Send",
-                "Cancel",
+                "Zaboravili ste šifru",
+                "Unesite email da bi resetovali šifru:",
+                "Pošalji",
+                "Otkaži",
                 "Email",
                 keyboard: Keyboard.Email);
 
@@ -250,8 +250,8 @@ namespace LoginWithFirebase.ViewModel
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await Application.Current.MainPage.DisplayAlert(
-                            "Reset Email Sent",
-                            "A password reset email has been sent. Please check your inbox.",
+                            "Reset Email je poslan",
+                            "Email za resetovanje šifre je poslan. Provjerite inbox.",
                             "OK");
                     });
                 }
@@ -260,8 +260,8 @@ namespace LoginWithFirebase.ViewModel
                     await MainThread.InvokeOnMainThreadAsync(async () =>
                     {
                         await Application.Current.MainPage.DisplayAlert(
-                            "Error",
-                            "There was an issue sending the reset email. Please check your email address and try again.",
+                            "Greška",
+                            "Došlo je do greške. Provjerite email adresu i pokušajte ponovo.",
                             "OK");
                     });
                 }

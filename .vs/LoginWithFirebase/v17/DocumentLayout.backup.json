@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\loginwithfirebase.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:loginwithfirebase.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\splashscreen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:splashscreen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|d:\\razvoj mobilnih aplikacija\\loginwithfirebase\\loginwithfirebase\\splashscreen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AD9E704F-2EE1-4F3F-A94B-54840570430C}|LoginWithFirebase.csproj|solutionrelative:splashscreen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +31,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoginWithFirebase",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\LoginWithFirebase.csproj",
-              "RelativeDocumentMoniker": "LoginWithFirebase.csproj",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\LoginWithFirebase.csproj",
-              "RelativeToolTip": "LoginWithFirebase.csproj",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-28T13:15:22.717Z",
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T22:16:21.207Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\MainPage.xaml",
-              "RelativeDocumentMoniker": "MainPage.xaml",
-              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\MainPage.xaml",
-              "RelativeToolTip": "MainPage.xaml",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAYwIQAAAAOAAAAAAAAAA==",
+              "Title": "SplashScreen.xaml.cs",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\SplashScreen.xaml.cs",
+              "RelativeDocumentMoniker": "SplashScreen.xaml.cs",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\SplashScreen.xaml.cs",
+              "RelativeToolTip": "SplashScreen.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T22:05:19.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SplashScreen.xaml",
+              "DocumentMoniker": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\SplashScreen.xaml",
+              "RelativeDocumentMoniker": "SplashScreen.xaml",
+              "ToolTip": "D:\\Razvoj Mobilnih Aplikacija\\LoginWithFirebase\\LoginWithFirebase\\SplashScreen.xaml",
+              "RelativeToolTip": "SplashScreen.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-28T13:11:59.136Z",
+              "WhenOpened": "2025-01-08T22:04:55.376Z",
               "EditorCaption": ""
             }
           ]

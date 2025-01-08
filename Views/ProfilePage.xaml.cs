@@ -1,4 +1,4 @@
-using Firebase.Auth;
+﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
 using LoginWithFirebase.ViewModel;
@@ -20,6 +20,37 @@ namespace LoginWithFirebase.Views
         private readonly FirebaseClient _firebaseClient;
 
         private string _userId;
+
+        private double _currentFontSize;
+
+        public double CurrentFontSize
+        {
+            get => _currentFontSize;
+            set
+            {
+                if (_currentFontSize != value)
+                {
+                    _currentFontSize = value;
+                    OnPropertyChanged(nameof(CurrentFontSize));
+                }
+            }
+        }
+
+
+        private bool _isDarkMode;
+
+        public bool IsDarkMode
+        {
+            get => _isDarkMode;
+            set
+            {
+                if (_isDarkMode != value)
+                {
+                    _isDarkMode = value;
+                    OnPropertyChanged(nameof(IsDarkMode));
+                }
+            }
+        }
 
         private bool _hasPendingFriendRequests;
         public bool HasPendingFriendRequests
@@ -46,7 +77,7 @@ namespace LoginWithFirebase.Views
             if (string.IsNullOrWhiteSpace(_userId))
             {
                 Console.WriteLine("[ERROR] User ID is empty. Cannot load user data.");
-                DisplayAlert("Error", "User data not found.", "OK");
+                DisplayAlert("Greška", "Korisnički podaci nisu pronadjeni.", "OK");
                 return;
             }
 
@@ -60,6 +91,20 @@ namespace LoginWithFirebase.Views
         {
             base.OnAppearing();
             await LoadUserData();
+            CurrentFontSize = Preferences.Get("FontSize", 16.0); 
+            Application.Current.Resources["GlobalFontSize"] = CurrentFontSize;
+
+         
+           
+        }
+
+
+        private void OnFontSizeChanged(object sender, ValueChangedEventArgs e)
+        {
+           
+            CurrentFontSize = e.NewValue;
+            Preferences.Set("FontSize", CurrentFontSize);
+            Application.Current.Resources["GlobalFontSize"] = CurrentFontSize;
         }
 
         private async void OnInviteFriendsClicked(object sender, EventArgs e)
@@ -83,7 +128,7 @@ namespace LoginWithFirebase.Views
             catch (Exception ex)
             {
                 Console.WriteLine($"[ERROR] Error navigating to FriendInvitationPage: {ex.Message}");
-                await DisplayAlert("Error", "An error occurred while trying to invite friends.", "OK");
+                await DisplayAlert("Greška", "Došlo je do greške prilikom slanja.", "OK");
             }
         }
 

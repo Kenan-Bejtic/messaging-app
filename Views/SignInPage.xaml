@@ -29,7 +29,8 @@
                    HorizontalOptions="Center"/>
 
            
-            <Label Text="Register New Account"
+            <Label Text="Prijava"
+                   Style="{StaticResource GlobalFontStyle}"
                    FontSize="22"
                    TextColor="#333333"
                    HorizontalTextAlignment="Center"
@@ -63,8 +64,9 @@
                 </Frame>
 
                 <Entry Grid.Column="1"
+                       Style="{StaticResource GlobalFontStyle}"
                        Text="{Binding SignInModel.Email}"
-                       Placeholder="User Email"
+                       Placeholder="Email"
                        Keyboard="Email"
                        BackgroundColor="Transparent" 
                     PlaceholderColor="#A0A0A0"
@@ -101,8 +103,9 @@
                 </Frame>
 
                 <Entry Grid.Column="1"
+                       Style="{StaticResource GlobalFontStyle}"
                        Text="{Binding SignInModel.Password}"
-                       Placeholder="Password"
+                       Placeholder="Šifra"
                        IsPassword="True"
                        BackgroundColor="Transparent"
                     PlaceholderColor="#A0A0A0"
@@ -117,7 +120,8 @@
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="End"
                          Padding="0,5,0,0">
-                <Label Text="Forgot Password?"
+                <Label Text="Zaboravili ste šifru?"
+                       Style="{StaticResource GlobalFontStyle}"
                        TextColor="#007AFF"
                        VerticalOptions="Center"
                        FontAttributes="Bold">
@@ -132,13 +136,15 @@
                          HorizontalOptions="Center"
                          Padding="0,10,0,0">
                 <CheckBox IsChecked="{Binding RememberMe}" Color="#007AFF"/>
-                <Label Text="Remember Me"
+                <Label Text="Zapamti me"
+                       Style="{StaticResource GlobalFontStyle}"
                        VerticalOptions="Center"
                        TextColor="#333333"/>
             </StackLayout>
 
             
-            <Button Text="Sign In"
+            <Button Text="Prijavi se"
+                    Style="{StaticResource GlobalFontStyle}"
                     BackgroundColor="#007AFF"
                     TextColor="White"
                     FontAttributes="Bold"
@@ -162,11 +168,13 @@
             Spacing="10" 
             HorizontalOptions="Center"
             Padding="0,15,0,0">
-            <Label Text="Don't have an account? " 
+            <Label Text="Nemaš korisnički račun? " 
+                   Style="{StaticResource GlobalFontStyle}"
                 TextColor="#666666"
                    VerticalOptions="Center"/>
 
-                <Button Text="Sign up"
+                <Button Text="Registracija"
+                    Style="{StaticResource ButtonStyle}"
                     BackgroundColor="Transparent"
                     TextColor="#007AFF"
                     FontAttributes="Bold"

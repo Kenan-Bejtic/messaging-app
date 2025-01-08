@@ -27,8 +27,8 @@
             <ScrollView>
                 <VerticalStackLayout Padding="20,10" Spacing="20">
                     <CollectionView x:Name="ChatsCollectionView"
-                ItemsSource="{Binding FriendList}"
-                SelectionMode="None">
+                        ItemsSource="{Binding FriendList}"
+                        SelectionMode="None">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="local:FriendDisplayModel">
                                 <Frame HasShadow="True"
@@ -60,7 +60,8 @@
                                         <Grid VerticalOptions="Center" HorizontalOptions="FillAndExpand">
 
                                             <Label Text="{Binding Username}"
-                   FontSize="16"
+                   
+                                                   Style="{StaticResource GlobalFontStyle}"
                    FontAttributes="Bold"
                    TextColor="#007AFF"
                    VerticalOptions="Center"
@@ -120,7 +121,8 @@
             </Grid>
 
             <StackLayout VerticalOptions="End" HorizontalOptions="Start" Margin="10">
-                <Button Text="Group Chat" 
+                <Button Text="Grupni chat" 
+                        Style="{StaticResource ButtonStyle}"
                     Clicked="OnGroupChatButtonClicked"
                     BackgroundColor="#1976D2" 
                     TextColor="White"

@@ -64,12 +64,12 @@ namespace LoginWithFirebase.Views
         {
             try
             {
-                // Fetch the actual group name
+                
                 var actualGroupName = await _chatService.GetGroupNameAsync(_groupChatId);
                 GroupName = $"{actualGroupName} ({_groupChatId})";
                 OnPropertyChanged(nameof(GroupName));
 
-                // Load existing messages
+                
                 var existingMessages = await _chatService.GetGroupMessagesAsync(_groupChatId);
                 foreach (var msg in existingMessages)
                 {
@@ -78,7 +78,7 @@ namespace LoginWithFirebase.Views
                     _messages.Add(msg);
                 }
 
-                // Scroll to the last message
+                
                 if (_messages.Count > 0)
                 {
                     await MainThread.InvokeOnMainThreadAsync(() =>
@@ -89,13 +89,13 @@ namespace LoginWithFirebase.Views
                     });
                 }
 
-                // Subscribe to new messages
+                
                 var observable = _chatService.SubscribeToGroupMessages(_groupChatId);
                 observable
                     .ObserveOn(SynchronizationContext.Current)
                     .Subscribe(fbEvent =>
                     {
-                        // Handle each event asynchronously
+                        
                         HandleGroupMessageEventAsync(fbEvent).ConfigureAwait(false);
                     });
             }
@@ -124,13 +124,13 @@ namespace LoginWithFirebase.Views
                         await PopulateSenderUsername(newMsg);
                         ConfigureMessageProperties(newMsg);
 
-                        // Ensure thread-safe addition
+                        
                         await MainThread.InvokeOnMainThreadAsync(() =>
                         {
                             _messages.Add(newMsg);
                         });
 
-                        // Scroll to the new message
+                        
                         await MainThread.InvokeOnMainThreadAsync(() =>
                         {
                             if (_messages.Count > 0)
@@ -145,7 +145,7 @@ namespace LoginWithFirebase.Views
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
+                
                 Console.WriteLine($"Error handling group message event: {ex.Message}");
             }
         }

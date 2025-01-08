@@ -48,7 +48,7 @@ namespace LoginWithFirebase
             //Pages
             builder.Services.AddSingleton<SignInPage>();
             builder.Services.AddSingleton<SignUpPage>();
-            builder.Services.AddSingleton<VerificationPage>();
+            
 
             return builder.Build();
         }

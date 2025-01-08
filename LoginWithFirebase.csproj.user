@@ -3,14 +3,17 @@
   <PropertyGroup>
     <IsFirstTimeProjectOpen>False</IsFirstTimeProjectOpen>
     <ActiveDebugFramework>net8.0-android</ActiveDebugFramework>
-    <ActiveDebugProfile>Pixel 5 - API 34 (Android 14.0 - API 34)</ActiveDebugProfile>
-    <SelectedPlatformGroup>Emulator</SelectedPlatformGroup>
+    <ActiveDebugProfile>HUAWEI ANE-LX1 (Android 9.0 - API 28)</ActiveDebugProfile>
+    <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <DefaultDevice>pixel_5_-_api_34</DefaultDevice>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="SplashScreen.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Views\ChatPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
@@ -18,9 +21,6 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\FriendInvitationPage.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
-    <MauiXaml Update="Views\FriendsListPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\GroupChatPage.xaml">
@@ -36,9 +36,6 @@
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="Views\SignUpPage.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
-    <MauiXaml Update="Views\VerificationPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
   </ItemGroup>

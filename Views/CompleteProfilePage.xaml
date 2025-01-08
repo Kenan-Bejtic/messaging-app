@@ -21,7 +21,7 @@
                    WidthRequest="150"
                    HorizontalOptions="Center"/>
 
-            <Label Text="Complete Your Profile"
+            <Label Text="Kompletirajte svoj profil"
                    FontSize="22"
                    TextColor="#333333"
                    HorizontalTextAlignment="Center"
@@ -50,7 +50,7 @@
 
                 <Entry Grid.Column="1"
                        Text="{Binding Username}"
-                       Placeholder="Username"
+                       Placeholder="Korisničko ime"
                        BackgroundColor="Transparent"
                        PlaceholderColor="#A0A0A0"
                        TextColor="#333333"
@@ -82,7 +82,7 @@
                 </Frame>
 
                 <Picker Grid.Column="1"
-                        Title="Select Gender"
+                        Title="Odaberite spol"
                         ItemsSource="{Binding Genders}"
                         SelectedItem="{Binding Gender}"
                         BackgroundColor="Transparent"
@@ -93,7 +93,7 @@
                         AutomationProperties.HelpText="Gender"/>
             </Grid>
 
-            <Button Text="Upload Profile Picture"
+            <Button Text="Upload profilne slike"
                     BackgroundColor="#007AFF"
                     TextColor="White"
                     FontAttributes="Bold"
@@ -109,7 +109,7 @@
                 </Button.Triggers>
             </Button>
 
-            <Button Text="Complete Profile"
+            <Button Text="Kreiraj profil"
                     BackgroundColor="#007AFF"
                     TextColor="White"
                     FontAttributes="Bold"

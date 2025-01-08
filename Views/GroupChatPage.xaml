@@ -24,7 +24,8 @@
                 VerticalOptions="StartAndExpand"
                 Padding="20">
 
-                <Label Text="Create New Group Chat"
+                <Label Text="Kreiranje novog grupnog razgovora"
+                       Style="{StaticResource GlobalFontStyle}"
                        FontAttributes="Bold" 
                        FontSize="18"
                        TextColor="#333333" />
@@ -52,7 +53,8 @@
 
                     <Entry Grid.Column="1"
                            x:Name="GroupNameEntry"
-                           Placeholder="Enter new group name..."
+                           Style="{StaticResource GlobalFontStyle}"
+                           Placeholder="Unesite ime grupe..."
                            BackgroundColor="Transparent"
                            PlaceholderColor="#A0A0A0"
                            TextColor="#333333"
@@ -62,7 +64,8 @@
                            AutomationProperties.HelpText="Group Name"/>
                 </Grid>
 
-                <Button Text="Create Group"
+                <Button Text="Kreiraj grupu"
+                        Style="{StaticResource ButtonStyle}"
                         BackgroundColor="#388E3C" 
                         TextColor="White"
                         FontAttributes="Bold"
@@ -79,7 +82,8 @@
 
                 <BoxView HeightRequest="1" Color="Gray" />
 
-                <Label Text="Join Existing Group Chat" 
+                <Label Text="Pridruži se grupi" 
+                       Style="{StaticResource GlobalFontStyle}"
                        FontAttributes="Bold" 
                        FontSize="18"
                        TextColor="#333333" />
@@ -107,7 +111,8 @@
 
                     <Entry Grid.Column="1"
                            x:Name="GroupIdEntry"
-                           Placeholder="Enter group chat ID..."
+                           Placeholder="Unesite ID grupnog razgovora..."
+                           Style="{StaticResource GlobalFontStyle}"
                            BackgroundColor="Transparent"
                            PlaceholderColor="#A0A0A0"
                            TextColor="#333333"
@@ -117,7 +122,8 @@
                            AutomationProperties.HelpText="Group Chat ID"/>
                 </Grid>
 
-                <Button Text="Join Group"
+                <Button Text="Priduži se grupi"
+                        Style="{StaticResource ButtonStyle}"
                         BackgroundColor="#1976D2" 
                         TextColor="White"
                         FontAttributes="Bold"

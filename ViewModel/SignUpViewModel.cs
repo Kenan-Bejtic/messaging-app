@@ -37,19 +37,19 @@ namespace LoginWithFirebase.ViewModel
 
                 if (!IsValidEmail(_signUpModel.Email))
                 {
-                    await Application.Current.MainPage.DisplayAlert("Invalid Email", "Please enter a valid email address.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Nije validan Email", "Molimo vas da unesete ispravnu email adresu.", "OK");
                     return;
                 }
 
                 if (string.IsNullOrEmpty(_signUpModel.Password) || _signUpModel.Password.Length < 8)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Weak Password", "Password must be at least 8 characters long.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Slaba šifra", "Šifra mora biti minimalno 8 karaktera.", "OK");
                     return;
                 }
 
                 if (!Regex.IsMatch(_signUpModel.Password, @"[A-Z]") || !Regex.IsMatch(_signUpModel.Password, @"[0-9]"))
                 {
-                    await Application.Current.MainPage.DisplayAlert("Weak Password", "Password must contain at least one uppercase letter and one number.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Slaba šifra", "Šifra mora sadržavati  najmanje jedno veliko slovo i jedan broj.", "OK");
                     return;
                 }
 
@@ -79,12 +79,12 @@ namespace LoginWithFirebase.ViewModel
             }
             catch (FirebaseAuthException firebaseEx) when (firebaseEx.Reason == AuthErrorReason.EmailExists)
             {
-                await Application.Current.MainPage.DisplayAlert("Email Exists",
-                    "This email is already registered. Please sign in or use a different email.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Email već postoji",
+                    "Ovaj email je već registovan. Prijavite se ili iskoristite drugi mail.", "OK");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error during sign-up: {ex.Message}");
+                Debug.WriteLine($"Greška prilikom registracije: {ex.Message}");
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }

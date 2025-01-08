@@ -45,14 +45,15 @@
             <Grid HorizontalOptions="FillAndExpand">
                 
                 <Button
-        Text="Invite Friends"
-        Clicked="OnInviteFriendsClicked"
-        BackgroundColor="#007AFF"
-        TextColor="White"
-        FontAttributes="Bold"
-        CornerRadius="25"
-        HeightRequest="60"
-        HorizontalOptions="FillAndExpand">
+                Text="Slanje zahtjeva za prijateljstvo"
+                    Style="{StaticResource ButtonStyle}"
+                Clicked="OnInviteFriendsClicked"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="60"
+                HorizontalOptions="FillAndExpand">
                     <Button.Triggers>
                         <Trigger TargetType="Button" Property="IsPressed" Value="True">
                             <Setter Property="BackgroundColor" Value="#005BBB"/>
@@ -80,7 +81,8 @@
             </Grid>
            
             <Button
-                Text="Logout"
+                Text="Odjava"
+                Style="{StaticResource ButtonStyle}"
                 Clicked="OnLogoutClicked"
                 BackgroundColor="#dc3545"
                 TextColor="White"
@@ -94,6 +96,27 @@
                     </Trigger>
                 </Button.Triggers>
             </Button>
+
+
+            <StackLayout Padding="10">
+                <Label Text="Prilagodi velicinu fonta:" 
+           FontSize="18" 
+           HorizontalOptions="Start" 
+           VerticalOptions="Center" />
+
+                <Slider x:Name="FontSizeSlider"
+            Minimum="12"
+            Maximum="40"
+            Value="{Binding CurrentFontSize}"
+            ValueChanged="OnFontSizeChanged"
+            HorizontalOptions="FillAndExpand" />
+
+                <Label Text="{Binding CurrentFontSize, StringFormat='Odabrana velicina fonta: {0:F0}'}" 
+           FontSize="16" 
+           HorizontalOptions="Center" />
+            </StackLayout>
+
+
 
 
 

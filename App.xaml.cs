@@ -26,7 +26,7 @@ namespace LoginWithFirebase
 
 
             
-            MainPage = new NavigationPage(new SignInPage(new SignInViewModel(_firebaseAuthClient)));
+            MainPage = new NavigationPage(new SplashScreen(_firebaseAuthClient));
         }
 
         public FirebaseAuthClient GetFirebaseAuthClient()
@@ -34,9 +34,6 @@ namespace LoginWithFirebase
             return _firebaseAuthClient;
         }
 
-
     }
 
-       
-    
 }

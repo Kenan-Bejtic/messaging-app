@@ -24,7 +24,7 @@
 
             <Label Grid.Column="1"
                    Text="{Binding FriendUsername}"
-                   FontSize="18"
+                   Style="{StaticResource GlobalFontStyle}"
                    TextColor="White"
                    VerticalOptions="Center"
                    Margin="10,0,0,0" />
@@ -51,7 +51,7 @@
                                        HorizontalOptions="FillAndExpand" />
 
                                 <Label Text="{Binding Content}" 
-                                       FontSize="16"
+                                       Style="{StaticResource GlobalFontStyle}"
                                        TextColor="Black"
                                        IsVisible="{Binding ImageUrl, Converter={StaticResource NullOrEmptyToBoolInverter}}"
                                        LineBreakMode="WordWrap" />
@@ -93,7 +93,7 @@
                    Padding="0"
                    HasShadow="False">
                 <Entry x:Name="MessageEntry"
-                       Placeholder="Type a message..."
+                       Placeholder="Unesite poruku..."
                        FontSize="16"
                        TextColor="#333333"
                        VerticalOptions="Center"
@@ -102,7 +102,8 @@
             </Frame>
 
             <Button Grid.Column="2"
-                    Text="Send"
+                    Text="Pošalji"
+                    Style="{StaticResource ButtonStyle}"
                     BackgroundColor="{StaticResource ButtonBackgroundColor}"
                     TextColor="White"
                     FontSize="16"

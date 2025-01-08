@@ -33,7 +33,7 @@ namespace LoginWithFirebase.ViewModel
             if (response.IsSuccessStatusCode)
             {
                 
-                await App.Current.MainPage.DisplayAlert("Verification Email Sent", "Please check your email to verify your account.", "OK");
+                await App.Current.MainPage.DisplayAlert("Info", "Provjerite mail da bi verifikovali profil.", "OK");
             }
             else
             {

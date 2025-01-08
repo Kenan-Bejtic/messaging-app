@@ -61,7 +61,7 @@ namespace LoginWithFirebase.ViewModel
             
             if (string.IsNullOrWhiteSpace(inviteCode) || !inviteCode.StartsWith("#") || inviteCode.Length != 7)
             {
-                await Application.Current.MainPage.DisplayAlert("Invalid Code", "The invite code must be in the format: #123456.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Pogrešan kod", "Kod treba biti u  formatu: #123456.", "OK");
                 IsProfileVisible = false;
                 return;
             }
@@ -72,7 +72,7 @@ namespace LoginWithFirebase.ViewModel
             
             if (codeToSearch == CurrentUserInviteCode)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You cannot send a friend request to yourself.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Greška", "Ne možete sami sebi poslati zahtjev za prijateljstvo.", "OK");
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace LoginWithFirebase.ViewModel
                 var friendsList = currentUserFriends.Select(f => f.Object).ToList();
                 if (friendsList.Contains(codeToSearch))
                 {
-                    await Application.Current.MainPage.DisplayAlert("Info", "You are already friends with this user.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Info", "Već ste prijatelj sa ovim korisnikom.", "OK");
                     return;
                 }
 
@@ -114,7 +114,7 @@ namespace LoginWithFirebase.ViewModel
                 else
                 {
                     
-                    await Application.Current.MainPage.DisplayAlert("User Not Found", "No user found with this invite code.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Korisnik nije pronađen", "Nije pronađen korisnik sa tim kodom.", "OK");
                     IsProfileVisible = false;
                 }
             }
@@ -147,7 +147,7 @@ namespace LoginWithFirebase.ViewModel
 
             if (SearchedInviteCode == $"#{CurrentUserInviteCode}")
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You cannot send a friend request to yourself.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Greška", "Ne možete sami sebi poslati zahtjev za prijateljstvo.", "OK");
                 return;
             }
 
@@ -160,7 +160,7 @@ namespace LoginWithFirebase.ViewModel
                 var currentUserProfile = await GetUserProfileAndFriends(currentUserId);
                 if (currentUserProfile.Friends.Contains(recipientInviteCode))
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", "You are already friends with this user.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Greška", "Već ste prijatelj sa ovim korisnikom.", "OK");
                     return;
                 }
 
@@ -174,7 +174,7 @@ namespace LoginWithFirebase.ViewModel
 
                 if (pendingRequest != null)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", "A friend request is already pending with this user.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Greška", "Već ste poslali zahtjev.", "OK");
                     return;
                 }
 
@@ -189,7 +189,7 @@ namespace LoginWithFirebase.ViewModel
                         timestamp = DateTime.UtcNow
                     });
 
-                await Application.Current.MainPage.DisplayAlert("Success", "Friend request sent successfully.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Info", "Uspješno ste poslali zahtjev.", "OK");
             }
             catch (Exception ex)
             {
@@ -249,7 +249,7 @@ namespace LoginWithFirebase.ViewModel
                             .Child("friends")
                             .PutAsync(senderUserFriends); 
 
-                        await Application.Current.MainPage.DisplayAlert("Success", "Friend request accepted and friends list updated.", "OK");
+                        await Application.Current.MainPage.DisplayAlert("Info", "Uspješno ste prihvatili prijatelja.", "OK");
                         await LoadPendingRequestsAsync();
                     }
                 }
@@ -336,7 +336,7 @@ namespace LoginWithFirebase.ViewModel
                         .Child(request.Key)
                         .DeleteAsync();
 
-                    await Application.Current.MainPage.DisplayAlert("Success", "Friend request deleted.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Info", "Uspješno ste obrisali zahtjev.", "OK");
 
                    
                     await LoadPendingRequestsAsync();

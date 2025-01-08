@@ -33,7 +33,7 @@ namespace LoginWithFirebase.Views
                 
                 var newGroupChatId = await _chatService.CreateGroupAsync(groupName, _currentUserId);
 
-                await DisplayAlert("Success", $"Group '{groupName}' created!\nID: {newGroupChatId}", "OK");
+                await DisplayAlert("Info", $"Grupa '{groupName}' je kreirana!\nID: {newGroupChatId}", "OK");
 
                 await Navigation.PushAsync(new GroupConversationPage(_currentUserId, newGroupChatId, "placeholder_group.png", groupName));
 
@@ -54,7 +54,7 @@ namespace LoginWithFirebase.Views
             var groupChatId = GroupIdEntry.Text?.Trim();
             if (string.IsNullOrEmpty(groupChatId))
             {
-                await DisplayAlert("Error", "Please enter a group chat ID.", "OK");
+                await DisplayAlert("Greška", "Unesite ID grupe.", "OK");
                 return;
             }
 
@@ -66,21 +66,21 @@ namespace LoginWithFirebase.Views
                 if (!groupExists)
                 {
                    
-                    await DisplayAlert("Error", $"Group with ID '{groupChatId}' does not exist.", "OK");
+                    await DisplayAlert("Greška", $"Groupa sa ID '{groupChatId}' ne postoji.", "OK");
                     return;
                 }
 
                 
                 await _chatService.JoinGroupAsync(groupChatId, _currentUserId);
 
-                await DisplayAlert("Success", $"Joined group with ID: {groupChatId}", "OK");
+                await DisplayAlert("Info", $"Uspješno ste se pridružili grupi sa ID: {groupChatId}", "OK");
 
                 
                 await Navigation.PushAsync(new GroupConversationPage(_currentUserId, groupChatId, "placeholder_group.png", "Group Chat"));
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to join group: {ex.Message}", "OK");
+                await DisplayAlert("Greška", $"Greška : {ex.Message}", "OK");
             }
             finally
             {
